@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaron Summerfield | Artist Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: black;
+            color: #e2e8f0; 
+        }
+        .font-serif {
+            font-family: 'Noto Serif', serif;
+        }
+        .tracking-widest-extra {
+            letter-spacing: 0.5em;
+        }
+        /* Smooth transitions for images */
+        img {
+            transition: opacity 1s ease-in-out;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #18181b;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-amber-500/30">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-[100] transition-all duration-500 py-8">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-[0.3em] uppercase">
+                A. Summerfield
+            </div>
+
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#featured" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Summer Circle</a>
+                <a href="#discography" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Discography</a>
+                <a href="#about" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">About</a>
+                <a href="#contact" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Contact</a>
+            </div>
+
+            <button id="mobile-menu-button" class="md:hidden text-slate-100">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-white/5 p-8 flex flex-col gap-6 text-center">
+            <a href="#featured" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Summer Circle</a>
+            <a href="#discography" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Discography</a>
+            <a href="#about" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">About</a>
+            <a href="#contact" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center px-6 text-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Mood Image: Dark Ritual/Forest Vibe -->
+            <img 
+                src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?auto=format&fit=crop&q=80&w=2000" 
+                alt="Atmosphere" 
+                class="w-full h-full object-cover opacity-30 grayscale brightness-50"
+            >
+            <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+        </div>
+        
+        <div class="z-10 max-w-5xl">
+            <span class="inline-block text-amber-500 font-bold tracking-widest-extra uppercase text-[10px] mb-6 opacity-80">
+                New Music Available 2025
+            </span>
+            <h1 class="text-7xl md:text-[10rem] font-light tracking-tighter mb-8 leading-none">
+                Summer <span class="italic font-serif">Circle</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 font-serif italic mb-12 max-w-2xl mx-auto leading-relaxed opacity-70">
+                "Capturing the feeling of a season returning, yet always appearing new."
+            </p>
+            <div class="flex justify-center gap-12">
+                <a href="#featured" class="group flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:text-amber-400 transition-all">
+                    The Narrative <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20">
+            <div class="w-px h-16 bg-gradient-to-b from-white to-transparent"></div>
+        </div>
+    </header>
+
+    <!-- Featured Album Section -->
+    <section id="featured" class="py-32 px-6 md:px-12">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
+                
+                <!-- Visual Column -->
+                <div class="relative group order-2 lg:order-1">
+                    <div class="absolute -inset-4 bg-amber-500/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                    <div class="relative aspect-square overflow-hidden bg-zinc-950 rounded-sm shadow-2xl">
+                        <!-- Cover Image: Minimalist/Organic Vibe -->
+                        <img 
+                            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=1200" 
+                            alt="Summer Circle Artwork" 
+                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        >
+                    </div>
+                    <div class="mt-8 flex justify-between items-baseline border-t border-white/5 pt-4">
+                        <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-500">Record No. 2025-01</span>
+                        <span class="text-[10px] italic text-zinc-600 font-serif">Post-modern Ritual</span>
+                    </div>
+                </div>
+
+                <!-- Content Column -->
+                <div class="space-y-12 order-1 lg:order-2">
+                    <div class="space-y-4">
+                        <h2 class="text-amber-500 font-bold tracking-[0.3em] uppercase text-[10px]">Featured Release</h2>
+                        <h3 class="text-6xl font-extralight tracking-tighter uppercase italic leading-none">Immer Cirque</h3>
+                    </div>
+                    
+                    <div class="space-y-6 text-slate-400 font-serif text-lg leading-relaxed">
+                        <p>
+                            With <span class="text-slate-100 italic">Summer Circle</span>, guitarist and composer Aaron Summerfield presents a suite of works that balance improvisational rigor with a compelling melodic accessibility.
+                        </p>
+                        <p>
+                            Recorded in an intimate setting that prioritizes natural resonance, the album serves as a meditation on cyclical time and the rituals of seasonal change.
+                        </p>
+                    </div>
+
+                    <!-- Tracklist -->
+                    <div class="pt-8 border-t border-white/10">
+                        <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-6">Track Sequence</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between group cursor-default py-1">
+                                <div class="flex items-center gap-6">
+                                    <span class="text-amber-500/40 text-[10px] font-mono group-hover:text-amber-500 transition-colors">01</span>
+                                    <span class="text-sm font-light tracking-wide text-zinc-300 group-hover:text-white transition-colors uppercase">Branch</span>
+                                </div>
+                                <i data-lucide="play" class="w-3 h-3 opacity-0 group-hover:opacity-100 text-amber-500 transition-opacity"></i>
+                            </div>
+                            <div class="flex items-center justify-between group cursor-default py-1">
+                                <div class="flex items-center gap-6">
+                                    <span class="text-amber-500/40 text-[10px] font-mono group-hover:text-amber-500 transition-colors">02</span>
+                                    <span class="text-sm font-light tracking-wide text-zinc-300 group-hover:text-white transition-colors uppercase">Summoning</span>
+                                </div>
+                                <i data-lucide="play" class="w-3 h-3 opacity-0 group-hover:opacity-100 text-amber-500 transition-opacity"></i>
+                            </div>
+                            <div class="flex items-center justify-between group cursor-default py-1">
+                                <div class="flex items-center gap-6">
+                                    <span class="text-amber-500/40 text-[10px] font-mono group-hover:text-amber-500 transition-colors">03</span>
+                                    <span class="text-sm font-light tracking-wide text-zinc-300 group-hover:text-white transition-colors uppercase">Seance and Prayer</span>
+                                </div>
+                                <i data-lucide="play" class="w-3 h-3 opacity-0 group-hover:opacity-100 text-amber-500 transition-opacity"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discography -->
+    <section id="discography" class="py-32 px-6 md:px-12 bg-zinc-950/30">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="flex justify-between items-end mb-16 border-b border-white/5 pb-8">
+                <h2 class="text-3xl font-light tracking-tighter uppercase">Selected Works</h2>
+                <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">2021 — 2026</div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1459749411177-042180ce673c?auto=format&fit=crop&q=80&w=400" alt="Album" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
+                    </div>
+                    <h4 class="text-lg font-medium tracking-tight mb-1">Nature's Dance</h4>
+                    <p class="text-xs text-zinc-500 italic font-serif">Tyler Farr Quartet</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&q=80&w=400" alt="Album" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
+                    </div>
+                    <h4 class="text-lg font-medium tracking-tight mb-1">Places</h4>
+                    <p class="text-xs text-zinc-500 italic font-serif">The Orchid Room</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1514525253361-bee8718a300a?auto=format&fit=crop&q=80&w=400" alt="Album" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
+                    </div>
+                    <h4 class="text-lg font-medium tracking-tight mb-1">Summer Circle</h4>
+                    <p class="text-xs text-zinc-500 italic font-serif">Aaron Summerfield</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=400" alt="Album" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
+                    </div>
+                    <h4 class="text-lg font-medium tracking-tight mb-1">Everyone Everywhere</h4>
+                    <p class="text-xs text-zinc-500 italic font-serif">Big Brooklyn</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Background/About -->
+    <section id="about" class="py-32 px-6 md:px-12">
+        <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-16">
+                <div class="md:col-span-3">
+                    <h3 class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-500 mb-8">Studio & Academic Background</h3>
+                    <p class="text-slate-400 font-serif italic text-xl leading-relaxed mb-8">
+                        Based in Denver, Aaron balances a performance practice with instructional leadership at the Community College of Aurora, specializing in music technology and jazz studies.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-zinc-900 text-[9px] font-bold uppercase tracking-widest text-zinc-500 border border-white/5">M.M. Jazz Performance</span>
+                        <span class="px-3 py-1 bg-zinc-900 text-[9px] font-bold uppercase tracking-widest text-zinc-500 border border-white/5">Recording Arts</span>
+                        <span class="px-3 py-1 bg-zinc-900 text-[9px] font-bold uppercase tracking-widest text-zinc-500 border border-white/5">Music Business</span>
+                    </div>
+                </div>
+                <div class="md:col-span-2 space-y-10 border-l border-white/5 pl-8 md:pl-16">
+                    <div class="space-y-4">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Selected Honors</h4>
+                        <ul class="space-y-2 text-sm text-zinc-400 font-light">
+                            <li>Westword Music Awards Finalist</li>
+                            <li>John Lennon Songwriting Finalist</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-40 px-6 bg-zinc-950/20 border-t border-white/5">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-8xl font-extralight tracking-tighter uppercase italic mb-12">Collaborate</h2>
+            <div class="space-y-8">
+                <a href="mailto:aaronsummerfield1985@gmail.com" class="block text-2xl md:text-4xl font-light hover:text-amber-500 transition-colors py-4 border-b border-white/5">
+                    aaronsummerfield1985@gmail.com
+                </a>
+                <div class="flex justify-center gap-12 pt-8">
+                    <a href="#" class="text-zinc-600 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-[0.4em]">Instagram</a>
+                    <a href="#" class="text-zinc-600 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-[0.4em]">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 text-center border-t border-white/5 opacity-30">
+        <p class="text-[9px] font-bold uppercase tracking-[0.5em]">
+            © 2025 Aaron Summerfield — Narrative Improvisation
+        </p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
+                nav.classList.remove('py-8');
+            } else {
+                nav.classList.remove('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
+                nav.classList.add('py-8');
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+    </script>
+</body>
+</html>

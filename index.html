@@ -42,6 +42,20 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #f59e0b;
         }
+
+        /* Custom Audio Player Styling */
+        audio::-webkit-media-controls-panel {
+            background-color: #18181b;
+        }
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-mute-button {
+            background-color: #f59e0b;
+            border-radius: 50%;
+        }
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display {
+            color: #e2e8f0;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-amber-500/30">
@@ -55,6 +69,7 @@
 
             <div class="hidden md:flex items-center gap-10">
                 <a href="#featured" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Summer Circle</a>
+                <a href="#sound" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Sound</a>
                 <a href="#visuals" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Visuals</a>
                 <a href="#discography" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Discography</a>
                 <a href="#about" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">About</a>
@@ -69,6 +84,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-white/5 p-8 flex flex-col gap-6 text-center">
             <a href="#featured" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Summer Circle</a>
+            <a href="#sound" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Sound</a>
             <a href="#visuals" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Visuals</a>
             <a href="#discography" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Discography</a>
             <a href="#about" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">About</a>
@@ -79,7 +95,7 @@
     <!-- Hero Section -->
     <header class="relative h-screen flex items-center justify-center px-6 text-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- Mood Image: Dark Ritual/Forest Vibe -->
+            <!-- Mood Image -->
             <img 
                 src="Summer Circle cover design 8.jpg" 
                 alt="Atmosphere" 
@@ -119,7 +135,6 @@
                 <div class="relative group order-2 lg:order-1">
                     <div class="absolute -inset-4 bg-amber-500/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                     <div class="relative aspect-square overflow-hidden bg-zinc-950 rounded-sm shadow-2xl">
-                        <!-- Cover Image: Minimalist/Organic Vibe -->
                         <img 
                             src="Summer Circle cover design 8.jpg" 
                             alt="Summer Circle Artwork" 
@@ -145,10 +160,38 @@
                         </p>
                         <p>
                             Recorded in an intimate setting that prioritizes natural resonance, the album serves as a meditation on cyclical time and the rituals of seasonal change.
-                          </p>
-                        <p>
+                        </p>
+                        <p class="text-amber-500/80 tracking-widest uppercase text-xs font-bold">
                             Coming 2026
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sound Section (Audio Player) -->
+    <section id="sound" class="py-32 px-6 md:px-12 border-t border-white/5 bg-zinc-950/50">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="grid lg:grid-cols-5 gap-16 items-center">
+                <div class="lg:col-span-2">
+                    <h2 class="text-amber-500 font-bold tracking-[0.3em] uppercase text-[10px]">Audio Preview</h2>
+                </div>
+                <div class="lg:col-span-3">
+                    <div class="p-8 bg-zinc-900/50 border border-white/5 rounded-sm shadow-2xl">
+                        <div class="flex items-center gap-6 mb-8">
+                            <div class="w-12 h-12 flex items-center justify-center bg-amber-500/10 rounded-full">
+                                <i data-lucide="music" class="text-amber-500 w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Now Playing</span>
+                                <span class="text-sm font-light tracking-wide text-white uppercase">Integrated Counterpoint One</span>
+                            </div>
+                        </div>
+                        <audio controls class="w-full">
+                            <source src="IntegratedCounterpoint1master.m4a" type="audio/mp4">
+                            Your browser does not support the audio element.
+                        </audio>
                     </div>
                 </div>
             </div>
@@ -190,7 +233,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-                <!-- Nature's Dance -->
                 <a href="https://open.spotify.com/album/13esdhTLwMmjkVbEymPb9M?si=m6EaGEbxRD-h3CB1s-HAVw" target="_blank" rel="noopener noreferrer" class="group block">
                     <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
                         <img src="nature's dance cover.webp" alt="Nature's Dance" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
@@ -199,7 +241,6 @@
                     <p class="text-xs text-zinc-500 italic font-serif">Tyler Farr Quartet</p>
                 </a>
 
-                <!-- Places -->
                 <a href="https://theorchidroom.bandcamp.com/album/places" target="_blank" rel="noopener noreferrer" class="group block">
                     <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
                         <img src="place cover.jpg" alt="Places" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
@@ -208,7 +249,6 @@
                     <p class="text-xs text-zinc-500 italic font-serif">The Orchid Room</p>
                 </a>
 
-                <!-- Summer Circle/Summoning EP -->
                 <a href="https://open.spotify.com/album/7vDgTanPnjMvpkz61FsaLF?si=jXzbyWTRSNyezeECGH_ozQ" target="_blank" rel="noopener noreferrer" class="group block">
                     <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
                         <img src="Summer Circle Summoning cover design 4.jpg" alt="Summer Circle/Summoning EP" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
@@ -217,7 +257,6 @@
                     <p class="text-xs text-zinc-500 italic font-serif">Aaron Summerfield</p>
                 </a>
 
-                <!-- Everyone Everywhere -->
                 <a href="https://open.spotify.com/album/4NBDnnp1eim3lc9hcLIfIJ?si=c5ZlLBEGRD25y4TCiUY03Q" target="_blank" rel="noopener noreferrer" class="group block">
                     <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
                         <img src="everyone everywhere.avif" alt="Everyone Everywhere" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
@@ -309,6 +348,7 @@
     </script>
 </body>
 </html>
+
 
 
 

@@ -55,6 +55,7 @@
 
             <div class="hidden md:flex items-center gap-10">
                 <a href="#featured" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Summer Circle</a>
+                <a href="#visuals" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Visuals</a>
                 <a href="#discography" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Discography</a>
                 <a href="#about" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">About</a>
                 <a href="#contact" class="text-[10px] font-bold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-[0.2em]">Contact</a>
@@ -68,6 +69,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-white/5 p-8 flex flex-col gap-6 text-center">
             <a href="#featured" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Summer Circle</a>
+            <a href="#visuals" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Visuals</a>
             <a href="#discography" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Discography</a>
             <a href="#about" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">About</a>
             <a href="#contact" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Contact</a>
@@ -150,8 +152,34 @@
         </div>
     </section>
 
+    <!-- Visuals Section (Performance) -->
+    <section id="visuals" class="py-32 px-6 md:px-12 border-t border-white/5">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+                <div class="max-w-2xl">
+                    <h2 class="text-amber-500 font-bold tracking-[0.3em] uppercase text-[10px] mb-4">Performance</h2>
+                    <h3 class="text-4xl md:text-6xl font-extralight tracking-tighter uppercase italic leading-none">Visual Narrative</h3>
+                </div>
+                <div class="text-slate-400 font-serif italic max-w-sm text-right hidden md:block opacity-60">
+                    "A study in resonance and spatial improvisation."
+                </div>
+            </div>
+
+            <div class="relative aspect-video w-full max-w-5xl mx-auto bg-zinc-950 rounded-sm overflow-hidden shadow-2xl border border-white/5">
+                <iframe 
+                    class="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700 opacity-80 hover:opacity-100" 
+                    src="https://www.youtube.com/embed/w0xrskcVaqg?rel=0&modestbranding=1" 
+                    title="Aaron Summerfield Performance" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- Discography -->
-    <section id="discography" class="py-32 px-6 md:px-12 bg-zinc-950/30">
+    <section id="discography" class="py-32 px-6 md:px-12 bg-zinc-950/30 border-t border-white/5">
         <div class="max-w-screen-2xl mx-auto">
             <div class="flex justify-between items-end mb-16 border-b border-white/5 pb-8">
                 <h2 class="text-3xl font-light tracking-tighter uppercase">Selected Works</h2>
@@ -277,6 +305,7 @@
     </script>
 </body>
 </html>
+
 
 
 

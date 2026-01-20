@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" name="font-import">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -69,6 +69,43 @@
         /* Artwork Transition */
         #track-artwork {
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, filter 0.6s ease;
+        }
+
+        /* Shimmer Effect for Hidden Stats */
+        .shimmer-text {
+            color: #000;
+            background: black;
+            cursor: default;
+            transition: background 0.5s ease;
+            display: inline-block;
+        }
+        
+        .shimmer-text:hover {
+            background: linear-gradient(
+                to right, 
+                #000 20%, 
+                #222 40%, 
+                #666 50%, 
+                #222 60%, 
+                #000 80%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer-animation 2s linear infinite;
+        }
+
+        @keyframes shimmer-animation {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Selection styling to ensure visibility when highlighted */
+        #stats-counter::selection, #stats-counter *::selection {
+            background: rgba(245, 158, 11, 0.3);
+            color: #fff;
+            -webkit-text-fill-color: #fff;
         }
     </style>
 </head>
@@ -154,10 +191,6 @@
                             alt="Summer Circle Artwork" 
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                         >
-                    </div>
-                    <div class="mt-8 flex justify-between items-baseline border-t border-white/5 pt-4">
-                        <span class="text-[10px] font-mono uppercase tracking-widest text-zinc-500">Record No. 2025-01</span>
-                        <span class="text-[10px] italic text-zinc-600 font-serif">Post-modern Ritual</span>
                     </div>
                 </div>
 
@@ -377,9 +410,84 @@
     <!-- Footer -->
     <footer class="py-20 px-6 text-center border-t border-white/5 opacity-30">
         <p class="text-[9px] font-bold uppercase tracking-[0.5em]">
-            © 2025 Aaron Summerfield — Narrative Improvisation
+            © 2025 Aaron Summerfield
         </p>
+        <!-- Hidden Stats Counter with Shimmer -->
+        <div id="stats-counter" class="mt-4 text-[9px] font-mono select-all transition-all duration-500">
+            <span class="shimmer-text">
+                Views: <span id="view-count">...</span> Total Listens: <span id="listen-count">...</span>
+            </span>
+        </div>
     </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, onSnapshot, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // Stats UI elements
+        const viewEl = document.getElementById('view-count');
+        const listenEl = document.getElementById('listen-count');
+
+        // Path for public stats doc
+        const statsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'site_stats');
+
+        const initStats = async (user) => {
+            if (!user) return;
+
+            // Use onSnapshot for real-time updates across all users
+            onSnapshot(statsDocRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    viewEl.innerText = data.views || 0;
+                    listenEl.innerText = data.listens || 0;
+                }
+            }, (err) => {
+                // Silent failure for hidden stats
+            });
+
+            // Increment views on load
+            try {
+                await setDoc(statsDocRef, { views: increment(1) }, { merge: true });
+            } catch (e) {
+                // Ignore silent failures
+            }
+        };
+
+        // Auth before queries
+        const initAuth = async () => {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+        };
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                initStats(user);
+            }
+        });
+
+        initAuth();
+
+        // Listen for track plays
+        window.incrementListens = async () => {
+            if (!auth.currentUser) return;
+            try {
+                await setDoc(statsDocRef, { listens: increment(1) }, { merge: true });
+            } catch (e) {
+                // Silent
+            }
+        };
+    </script>
 
     <script>
         lucide.createIcons();
@@ -425,6 +533,8 @@
             });
         }
 
+        let listenCountedForThisTrack = false;
+
         function playTrack(index) {
             currentTrackIndex = index;
             const track = tracks[currentTrackIndex];
@@ -434,6 +544,8 @@
             audioPlayer.load();
             updatePlayerUI();
             audioPlayer.play();
+            
+            if (window.incrementListens) window.incrementListens();
         }
 
         function selectTrack(index, element) {
@@ -454,6 +566,18 @@
 
         // Auto-play next track when current one ends
         audioPlayer.onended = () => nextTrack();
+
+        // Also trigger on manual play start
+        audioPlayer.onplay = () => {
+            if (!listenCountedForThisTrack && window.incrementListens) {
+                window.incrementListens();
+                listenCountedForThisTrack = true;
+            }
+        };
+        // Reset counted flag when source changes
+        audioPlayer.onloadstart = () => {
+            listenCountedForThisTrack = false;
+        };
 
         // Toggle Tracklist Visibility
         function toggleTracklist() {
@@ -496,9 +620,6 @@
     </script>
 </body>
 </html>
-
-
-
 
 
 

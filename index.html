@@ -415,7 +415,7 @@
         <!-- Hidden Stats Counter with Shimmer -->
         <div id="stats-counter" class="mt-4 text-[9px] font-mono select-all transition-all duration-500">
             <span class="shimmer-text">
-                Views: <span id="view-count">...</span> Total Listens: <span id="listen-count">...</span>
+                Views: <span id="view-count">0</span> Total Listens: <span id="listen-count">0</span>
             </span>
         </div>
     </footer>
@@ -448,6 +448,10 @@
                     const data = docSnap.data();
                     viewEl.innerText = data.views || 0;
                     listenEl.innerText = data.listens || 0;
+                } else {
+                    // Document doesn't exist yet, show 0
+                    viewEl.innerText = 0;
+                    listenEl.innerText = 0;
                 }
             }, (err) => {
                 // Silent failure for hidden stats
@@ -620,7 +624,3 @@
     </script>
 </body>
 </html>
-
-
-
-

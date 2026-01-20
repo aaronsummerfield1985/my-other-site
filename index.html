@@ -56,6 +56,20 @@
         audio::-webkit-media-controls-time-remaining-display {
             color: #e2e8f0;
         }
+        
+        /* Playlist Item Transitions */
+        .playlist-item {
+            transition: all 0.3s ease;
+        }
+        .playlist-item.active {
+            border-color: #f59e0b;
+            background-color: rgba(245, 158, 11, 0.05);
+        }
+
+        /* Artwork Transition */
+        #track-artwork {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-amber-500/30">
@@ -64,7 +78,7 @@
     <nav id="navbar" class="fixed w-full z-[100] transition-all duration-500 py-8">
         <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex justify-between items-center">
             <div class="text-xl font-bold tracking-[0.3em] uppercase">
-                A. Summerfield
+                Aaron Summerfield
             </div>
 
             <div class="hidden md:flex items-center gap-10">
@@ -173,25 +187,72 @@
     <!-- Sound Section (Audio Player) -->
     <section id="sound" class="py-32 px-6 md:px-12 border-t border-white/5 bg-zinc-950/50">
         <div class="max-w-screen-2xl mx-auto">
-            <div class="grid lg:grid-cols-5 gap-16 items-center">
+            <div class="grid lg:grid-cols-5 gap-16 items-start">
                 <div class="lg:col-span-2">
                     <h2 class="text-amber-500 font-bold tracking-[0.3em] uppercase text-[10px]">Listen Now</h2>
+                    <p class="mt-6 text-zinc-500 font-serif italic text-lg leading-relaxed max-w-sm">
+                        Explore studio recordings and early masters.
+                    </p>
                 </div>
                 <div class="lg:col-span-3">
-                    <div class="p-8 bg-zinc-900/50 border border-white/5 rounded-sm shadow-2xl">
-                        <div class="flex items-center gap-6 mb-8">
-                            <div class="w-12 h-12 flex items-center justify-center bg-amber-500/10 rounded-full">
-                                <i data-lucide="music" class="text-amber-500 w-5 h-5"></i>
+                    <div class="p-8 bg-zinc-900/50 border border-white/5 rounded-sm shadow-2xl space-y-8">
+                        
+                        <!-- Integrated Image Feature -->
+                        <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                            <div class="w-full md:w-48 aspect-square overflow-hidden bg-black border border-white/10 rounded-sm flex-shrink-0">
+                                <img id="track-artwork" src="Integrated Counterpoint alt 3.jpg" alt="Track Artwork" class="w-full h-full object-cover">
                             </div>
-                            <div>
-                                <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Now Playing</span>
-                                <span class="text-sm font-light tracking-wide text-white uppercase">Integrated Counterpoint One</span>
+                            
+                            <div class="flex-grow w-full space-y-8">
+                                <!-- Currently Playing Header -->
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-6">
+                                        <div class="w-12 h-12 flex items-center justify-center bg-amber-500/10 rounded-full">
+                                            <i data-lucide="music" id="play-icon" class="text-amber-500 w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Now Playing</span>
+                                            <span id="current-track-title" class="text-sm font-light tracking-wide text-white uppercase">Integrated Counterpoint One</span>
+                                        </div>
+                                    </div>
+                                    <!-- Skip Controls -->
+                                    <div class="flex items-center gap-4">
+                                        <button onclick="prevTrack()" class="p-2 text-zinc-500 hover:text-amber-500 transition-colors" title="Previous Track">
+                                            <i data-lucide="skip-back" class="w-5 h-5"></i>
+                                        </button>
+                                        <button onclick="nextTrack()" class="p-2 text-zinc-500 hover:text-amber-500 transition-colors" title="Next Track">
+                                            <i data-lucide="skip-forward" class="w-5 h-5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Audio Element -->
+                                <audio id="main-audio-player" controls class="w-full">
+                                    <source id="audio-source" src="IntegratedCounterpoint1master.m4a" type="audio/mp4">
+                                    Your browser does not support the audio element.
+                                </audio>
                             </div>
                         </div>
-                        <audio controls class="w-full">
-                            <source src="IntegratedCounterpoint1master.m4a" type="audio/mp4">
-                            Your browser does not support the audio element.
-                        </audio>
+
+                        <!-- Tracklist Toggle -->
+                        <div class="pt-6 border-t border-white/5">
+                            <button onclick="toggleTracklist()" class="flex items-center justify-between w-full group">
+                                <h4 class="text-[10px] font-bold text-zinc-600 uppercase tracking-widest group-hover:text-amber-500 transition-colors">Select Track</h4>
+                                <i data-lucide="chevron-down" id="tracklist-chevron" class="w-4 h-4 text-zinc-600 group-hover:text-amber-500 transition-all duration-300 rotate-0"></i>
+                            </button>
+                            
+                            <!-- Starts collapsed -->
+                            <div id="tracklist-container" class="space-y-2 overflow-hidden transition-all duration-300 max-h-0 opacity-0 pointer-events-none">
+                                <button data-track-index="0" onclick="selectTrack(0, this)" class="playlist-item active w-full text-left p-4 border border-white/5 hover:border-amber-500/50 rounded flex justify-between items-center group">
+                                    <span class="text-xs uppercase tracking-wider text-zinc-300 group-hover:text-white">Integrated Counterpoint One</span>
+                                    <span class="text-[10px] font-mono text-zinc-600 group-hover:text-amber-500">Track 01</span>
+                                </button>
+                                <button data-track-index="1" onclick="selectTrack(1, this)" class="playlist-item w-full text-left p-4 border border-white/5 hover:border-amber-500/50 rounded flex justify-between items-center group">
+                                    <span class="text-xs uppercase tracking-wider text-zinc-300 group-hover:text-white">General Interest Meeting</span>
+                                    <span class="text-[10px] font-mono text-zinc-600 group-hover:text-amber-500">Track 02</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -232,9 +293,7 @@
                 <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">2021 — 2026</div>
             </div>
 
-            <!-- Grid adjusted to 4 columns for balance -->
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-                <!-- Peaks and Playgrounds -->
                 <a href="https://open.spotify.com/album/4FDxdNHru6si81XznGxdAB?si=oxK7L85CTHSfF4Wz22tfRQ" target="_blank" rel="noopener noreferrer" class="group block">
                     <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
                         <img src="Peaks and Playgrounds.webp" alt="Peaks and Playgrounds" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
@@ -325,6 +384,93 @@
     <script>
         lucide.createIcons();
 
+        // Audio Player Logic
+        const audioPlayer = document.getElementById('main-audio-player');
+        const trackTitleDisplay = document.getElementById('current-track-title');
+        const trackArtwork = document.getElementById('track-artwork');
+        
+        const tracks = [
+            { 
+                src: 'IntegratedCounterpoint1master.m4a', 
+                title: 'Integrated Counterpoint One',
+                img: 'Integrated Counterpoint alt 3.jpg'
+            },
+            { 
+                src: 'General Interest Meeting cd baby.mp3', 
+                title: 'General Interest Meeting',
+                img: 'Baby Blues blue.jpg'
+            }
+        ];
+        
+        let currentTrackIndex = 0;
+
+        function updatePlayerUI() {
+            const track = tracks[currentTrackIndex];
+            trackTitleDisplay.innerText = track.title;
+            
+            // Swap Artwork with a slight fade
+            trackArtwork.style.opacity = '0';
+            setTimeout(() => {
+                trackArtwork.src = track.img;
+                trackArtwork.style.opacity = '1';
+            }, 300);
+            
+            // Update tracklist highlights
+            document.querySelectorAll('.playlist-item').forEach((item, idx) => {
+                if (idx === currentTrackIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function playTrack(index) {
+            currentTrackIndex = index;
+            const track = tracks[currentTrackIndex];
+            
+            audioPlayer.pause();
+            audioPlayer.src = track.src;
+            audioPlayer.load();
+            updatePlayerUI();
+            audioPlayer.play();
+        }
+
+        function selectTrack(index, element) {
+            playTrack(index);
+        }
+
+        function nextTrack() {
+            let nextIndex = currentTrackIndex + 1;
+            if (nextIndex >= tracks.length) nextIndex = 0;
+            playTrack(nextIndex);
+        }
+
+        function prevTrack() {
+            let prevIndex = currentTrackIndex - 1;
+            if (prevIndex < 0) prevIndex = tracks.length - 1;
+            playTrack(prevIndex);
+        }
+
+        // Auto-play next track when current one ends
+        audioPlayer.onended = () => nextTrack();
+
+        // Toggle Tracklist Visibility
+        function toggleTracklist() {
+            const container = document.getElementById('tracklist-container');
+            const chevron = document.getElementById('tracklist-chevron');
+            
+            if (container.classList.contains('max-h-0')) {
+                container.classList.remove('max-h-0', 'opacity-0', 'pointer-events-none');
+                container.classList.add('max-h-96', 'opacity-100', 'mt-4');
+                chevron.classList.add('rotate-180');
+            } else {
+                container.classList.add('max-h-0', 'opacity-0', 'pointer-events-none');
+                container.classList.remove('max-h-96', 'opacity-100', 'mt-4');
+                chevron.classList.remove('rotate-180');
+            }
+        }
+
         // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
@@ -350,9 +496,6 @@
     </script>
 </body>
 </html>
-
-
-
 
 
 

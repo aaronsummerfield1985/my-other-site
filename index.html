@@ -747,6 +747,7 @@
             constructor(el) {
                 this.el = el;
                 this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.continuous = false; // Flag for infinite scrambling
                 this.update = this.update.bind(this);
             }
             setText(newText) {
@@ -771,6 +772,14 @@
                 let complete = 0;
                 for (let i = 0, n = this.queue.length; i < n; i++) {
                     let { from, to, start, end, char } = this.queue[i];
+
+                    // Continuous mode prevents resolving to final letters
+                    if (this.continuous) {
+                        char = this.randomChar();
+                        output += `<span class="opacity-50 text-white">${char}</span>`;
+                        continue;
+                    }
+
                     if (this.frame >= end) {
                         complete++;
                         output += to;
@@ -785,7 +794,8 @@
                     }
                 }
                 this.el.innerHTML = output;
-                if (complete === this.queue.length) {
+
+                if (!this.continuous && complete === this.queue.length) {
                     this.resolve();
                 } else {
                     this.frameRequest = requestAnimationFrame(this.update);
@@ -810,14 +820,14 @@
 
             // Visual Logic
             scrambleQuote.classList.add('shimmer-reveal');
+            fx.continuous = true; // Start perpetual scramble
             
-            // Cycle presets every 3 seconds while mouse is over
+            // Cycle presets while moused over
             scrambleInterval = setInterval(() => {
                 presetIndex = (presetIndex + 1) % presets.length;
                 fx.setText(presets[presetIndex]);
             }, 3000);
             
-            // Trigger first scramble immediately
             presetIndex = Math.floor(Math.random() * (presets.length - 1)) + 1;
             fx.setText(presets[presetIndex]);
         });
@@ -826,7 +836,7 @@
             fadeOutAudio();
             clearInterval(scrambleInterval);
             scrambleQuote.classList.remove('shimmer-reveal');
-            // Revert to original text
+            fx.continuous = false; // Allow resolution back to original
             fx.setText(presets[0]);
         });
 

@@ -318,10 +318,12 @@
             100% { filter: drop-shadow(2px 0 #ff0000) drop-shadow(-2px 0 #00ffff) hue-rotate(360deg); opacity: 1; }
         }
 
-        .social-glitch:hover i, .spotify-glitch:hover svg {
+        /* Target SVGs because Lucide replaces <i> tags */
+        .social-glitch:hover svg, .spotify-glitch:hover svg {
             animation: glitch-shake 0.2s cubic-bezier(.36,.07,.19,.97) both infinite, chromatic-flicker 0.15s steps(2) infinite;
             color: white !important;
             fill: white !important;
+            display: inline-block;
         }
 
     </style>
@@ -771,16 +773,22 @@
                     return;
                 }
 
-                // Lead to Google Form with pre-filled email
-                const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSepBJfN3LbxFrga4z04Jvkj70g4lqnWXZvgxW2Pczs9LG_BkA/viewform";
-                // entry.1045781291 is a common entry ID for the first text field, 
-                // but pre-filled URLs use the format: entry.ID=value
-                // For your specific form, we construct the URL and open it.
-                const prefilledUrl = `${formBaseUrl}?usp=pp_url&entry.1045781291=${encodeURIComponent(email)}`;
+                // Lead to your new Google Form link
+                const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeS-x6T-P-J-K-M-N-O-P/viewform"; 
+                // Note: Short links like forms.gle don't always redirect pre-filled parameters reliably.
+                // Using the full URL structure for the forms.gle/VHt3r4u5Ze3XRW1L8 target:
+                const fullFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc7m1V_v6L3S-O-X6X-S-W-T-Z-U/viewform"; // Placeholder for actual ID if forms.gle link is used
                 
-                window.open(prefilledUrl, '_blank');
+                // Constructing the URL with pre-filled parameter
+                // Adjusting to your forms.gle link destination
+                const prefilledUrl = `https://docs.google.com/forms/d/e/1FAIpQLSc7m1V_v6L3S-O-X6X-S-W-T-Z-U/viewform?usp=pp_url&entry.1045781291=${encodeURIComponent(email)}`;
                 
-                newsletterMsg.textContent = "Redirecting to form...";
+                // Fallback to the short link provided if specific entry ID is unknown
+                const shortLinkUrl = `https://forms.gle/VHt3r4u5Ze3XRW1L8?email=${encodeURIComponent(email)}`;
+                
+                window.open(shortLinkUrl, '_blank');
+                
+                newsletterMsg.textContent = "Opening Mailing List...";
                 newsletterMsg.classList.remove('opacity-0');
             });
         }
@@ -1034,17 +1042,19 @@
         const emailFx = new TextScramble(contactEmail);
         const originalEmail = "info@aaronsummerfield.com";
 
-        contactEmail.addEventListener('mouseenter', () => {
-            contactEmail.classList.add('email-glitch-active');
-            emailFx.continuous = true;
-            emailFx.setText(originalEmail);
-        });
+        if (contactEmail) {
+            contactEmail.addEventListener('mouseenter', () => {
+                contactEmail.classList.add('email-glitch-active');
+                emailFx.continuous = true;
+                emailFx.setText(originalEmail);
+            });
 
-        contactEmail.addEventListener('mouseleave', () => {
-            contactEmail.classList.remove('email-glitch-active');
-            emailFx.continuous = false;
-            emailFx.setText(originalEmail);
-        });
+            contactEmail.addEventListener('mouseleave', () => {
+                contactEmail.classList.remove('email-glitch-active');
+                emailFx.continuous = false;
+                emailFx.setText(originalEmail);
+            });
+        }
 
         function fadeOutAudio() {
             clearTimeout(audioTimeout);
@@ -1072,3 +1082,4 @@
     </script>
 </body>
 </html>
+

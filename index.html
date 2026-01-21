@@ -303,6 +303,12 @@
             transition: none;
         }
 
+        /* Email Glitch Styles */
+        .email-glitch-active {
+            animation: glitch-shake 0.3s cubic-bezier(.36,.07,.19,.97) both infinite;
+            text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,255,255,0.5);
+        }
+
     </style>
 </head>
 <body class="antialiased selection:bg-amber-500/30">
@@ -615,7 +621,7 @@
             <div class="space-y-12">
                 <!-- Contact Links -->
                 <div class="relative">
-                    <a href="mailto:info@aaronsummerfield.com" class="block text-2xl md:text-4xl font-light hover:text-amber-500 transition-colors py-4 border-b border-white/10 max-w-2xl mx-auto relative z-20">
+                    <a id="contact-email" href="mailto:info@aaronsummerfield.com" class="block text-2xl md:text-4xl font-light hover:text-amber-500 transition-colors py-4 border-b border-white/10 max-w-2xl mx-auto relative z-20">
                         info@aaronsummerfield.com
                     </a>
                     <p class="mt-4 text-xs text-zinc-500 uppercase tracking-widest bg-black/40 group-hover:bg-black/70 backdrop-blur-sm inline-block px-4 py-1 rounded-sm transition-all duration-700">Next Performance: Inquire for bookings</p>
@@ -722,12 +728,12 @@
 
         // Newsletter Logic
         const newsletterBtn = document.getElementById('newsletter-btn');
-        const newsletterEmail = document.getElementById('newsletter-email');
+        const newsletterEmailInput = document.getElementById('newsletter-email');
         const newsletterMsg = document.getElementById('newsletter-msg');
 
         if (newsletterBtn) {
             newsletterBtn.addEventListener('click', async () => {
-                const email = newsletterEmail.value;
+                const email = newsletterEmailInput.value;
                 if (!email || !email.includes('@')) {
                     newsletterMsg.textContent = "Please enter a valid email";
                     newsletterMsg.classList.remove('opacity-0');
@@ -756,7 +762,7 @@
                         userId: auth.currentUser.uid
                     });
                     
-                    newsletterEmail.value = "";
+                    newsletterEmailInput.value = "";
                     newsletterMsg.textContent = "Subscribed. Thank you.";
                     newsletterMsg.classList.remove('opacity-0');
                     newsletterBtn.textContent = "Joined";
@@ -897,27 +903,6 @@
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
-        // Hero Header Interactive Logic
-        const heroTitle = document.getElementById('hero-title');
-        const scrambleQuote = document.getElementById('scramble-quote');
-        const previewAudio = document.getElementById('header-preview-audio');
-        
-        const presets = [
-            "Capturing the feeling of a season returning, yet always appearing new.",
-            "Returning season, always appearing new; yet capturing the feeling.",
-            "New season returning, yet always appearing: capturing the feeling.",
-            "The feeling of a season capturing, yet always returning new appearing.",
-            "Always appearing new, yet returning a season, capturing the feeling.",
-            "Appearing new, yet capturing the season, returning always the feeling.",
-            "Yet always returning new, capturing a feeling, appearing season.",
-            "Season appearing new, yet capturing the returning always feeling."
-        ];
-        
-        let audioTimeout;
-        let fadeInterval;
-        let scrambleInterval;
-        let presetIndex = 0;
-
         // Scramble animation helper
         class TextScramble {
             constructor(el) {
@@ -983,6 +968,27 @@
             }
         }
 
+        // Hero Header Interactive Logic
+        const heroTitle = document.getElementById('hero-title');
+        const scrambleQuote = document.getElementById('scramble-quote');
+        const previewAudio = document.getElementById('header-preview-audio');
+        
+        const presets = [
+            "Capturing the feeling of a season returning, yet always appearing new.",
+            "Returning season, always appearing new; yet capturing the feeling.",
+            "New season returning, yet always appearing: capturing the feeling.",
+            "The feeling of a season capturing, yet always returning new appearing.",
+            "Always appearing new, yet returning a season, capturing the feeling.",
+            "Appearing new, yet capturing the season, returning always the feeling.",
+            "Yet always returning new, capturing a feeling, appearing season.",
+            "Season appearing new, yet capturing the returning always feeling."
+        ];
+        
+        let audioTimeout;
+        let fadeInterval;
+        let scrambleInterval;
+        let presetIndex = 0;
+
         const fx = new TextScramble(scrambleQuote);
 
         heroTitle.addEventListener('mouseenter', () => {
@@ -1014,6 +1020,23 @@
             scrambleQuote.classList.remove('shimmer-reveal');
             fx.continuous = false; // Allow resolution back to original
             fx.setText(presets[0]);
+        });
+
+        // Contact Email Scramble Logic
+        const contactEmail = document.getElementById('contact-email');
+        const emailFx = new TextScramble(contactEmail);
+        const originalEmail = "info@aaronsummerfield.com";
+
+        contactEmail.addEventListener('mouseenter', () => {
+            contactEmail.classList.add('email-glitch-active');
+            emailFx.continuous = true;
+            emailFx.setText(originalEmail);
+        });
+
+        contactEmail.addEventListener('mouseleave', () => {
+            contactEmail.classList.remove('email-glitch-active');
+            emailFx.continuous = false;
+            emailFx.setText(originalEmail);
         });
 
         function fadeOutAudio() {

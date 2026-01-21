@@ -320,7 +320,7 @@
 
         /* Target SVGs because Lucide replaces <i> tags */
         .social-glitch:hover svg, .spotify-glitch:hover svg {
-            animation: glitch-shake 0.2s cubic-bezier(.36,.07,.19,.97) both infinite, chromatic-flicker 0.15s steps(2) infinite;
+            animation: glitch-shake 0.2s cubic-bezier(.36,.07,.19,.97) both infinite, chromatic-flicker 0.15s steps(2) infinite !important;
             color: white !important;
             fill: white !important;
             display: inline-block;
@@ -1038,17 +1038,31 @@
                     return;
                 }
 
-                // Updated Google Form link with correct Entry ID (424566785)
+                // POST to formResponse for auto-submission
+                // Google Form Action URL: /formResponse instead of /viewform
                 const formId = "1FAIpQLSepBJfN3LbxFrga4z04Jvkj70g4lqnWXZvgxW2Pczs9LG_BkA";
-                const prefilledUrl = `https://docs.google.com/forms/d/e/${formId}/viewform?usp=pp_url&entry.424566785=${encodeURIComponent(email)}`;
+                const submitUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
                 
-                // Open in new tab
-                window.open(prefilledUrl, '_blank');
+                // Create a hidden form and submit it via a POST request to trigger automatic submission.
+                // This will open a new tab directly on the 'Response Recorded' page.
+                const hiddenForm = document.createElement('form');
+                hiddenForm.action = submitUrl;
+                hiddenForm.method = 'POST';
+                hiddenForm.target = '_blank';
+
+                const hiddenInput = document.createElement('input');
+                hiddenInput.name = 'entry.424566785'; // Verified Entry ID
+                hiddenInput.value = email;
+                hiddenForm.appendChild(hiddenInput);
+
+                document.body.appendChild(hiddenForm);
+                hiddenForm.submit();
+                document.body.removeChild(hiddenForm);
                 
-                newsletterMsg.textContent = "Opening Mailing List...";
+                newsletterMsg.textContent = "Joining Mailing List...";
                 newsletterMsg.classList.remove('opacity-0');
                 
-                // Clear input after a short delay
+                // Clear input and message after a short delay
                 setTimeout(() => {
                     newsletterEmailInput.value = "";
                     newsletterMsg.classList.add('opacity-0');

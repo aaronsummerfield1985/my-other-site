@@ -765,25 +765,22 @@
         const newsletterMsg = document.getElementById('newsletter-msg');
 
         if (newsletterBtn) {
-            newsletterBtn.addEventListener('click', () => {
-                const email = newsletterEmailInput.value;
+            newsletterBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = newsletterEmailInput.value.trim();
+                
                 if (!email || !email.includes('@')) {
                     newsletterMsg.textContent = "Please enter a valid email";
                     newsletterMsg.classList.remove('opacity-0');
                     return;
                 }
 
-                // Lead to your new Google Form link
-                const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeS-x6T-P-J-K-M-N-O-P/viewform"; 
-                // Note: Short links like forms.gle don't always redirect pre-filled parameters reliably.
-                // Using the full URL structure for the forms.gle/VHt3r4u5Ze3XRW1L8 target:
-                const fullFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc7m1V_v6L3S-O-X6X-S-W-T-Z-U/viewform"; // Placeholder for actual ID if forms.gle link is used
+                // Lead to Google Form with pre-filled email
+                // Constructing the URL with the standard Google pre-fill parameter structure
+                const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc7m1V_v6L3S-O-X6X-S-W-T-Z-U/viewform";
+                const prefilledUrl = `${formBaseUrl}?usp=pp_url&entry.1045781291=${encodeURIComponent(email)}`;
                 
-                // Constructing the URL with pre-filled parameter
-                // Adjusting to your forms.gle link destination
-                const prefilledUrl = `https://docs.google.com/forms/d/e/1FAIpQLSc7m1V_v6L3S-O-X6X-S-W-T-Z-U/viewform?usp=pp_url&entry.1045781291=${encodeURIComponent(email)}`;
-                
-                // Fallback to the short link provided if specific entry ID is unknown
+                // Fallback to the short link if redirect fails
                 const shortLinkUrl = `https://forms.gle/VHt3r4u5Ze3XRW1L8?email=${encodeURIComponent(email)}`;
                 
                 window.open(shortLinkUrl, '_blank');
@@ -1082,4 +1079,3 @@
     </script>
 </body>
 </html>
-

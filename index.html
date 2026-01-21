@@ -4,6 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aaron Summerfield | Artist Portfolio</title>
+    <meta name="description" content="Portfolio of Aaron Summerfield - Jazz Performance, Recording Arts, and Composition. Featuring the upcoming release 'Summer Circle'.">
+    
+    <!-- Open Graph Data -->
+    <meta property="og:title" content="Aaron Summerfield | Summer Circle">
+    <meta property="og:type" content="music.musician">
+    <meta property="og:url" content="https://aaronsummerfield.com">
+    <meta property="og:image" content="Summer Circle cover design 8.jpg">
+    <meta property="og:description" content="Composer and guitarist based in Denver. Preview the new suite 'Summer Circle' (2026).">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicGroup",
+      "name": "Aaron Summerfield",
+      "url": "https://aaronsummerfield.com",
+      "genre": "Jazz",
+      "location": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Denver",
+          "addressRegion": "CO"
+        }
+      },
+      "album": {
+        "@type": "MusicAlbum",
+        "name": "Summer Circle",
+        "datePublished": "2026"
+      }
+    }
+    </script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Noto Sans and Noto Serif -->
@@ -228,6 +261,53 @@
             -webkit-text-fill-color: transparent;
             animation: shimmer-animation 2s linear infinite;
         }
+
+        /* Glitch/Static Effect for Button */
+        @keyframes glitch-shake {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-2px, -2px); }
+            20% { transform: translate(2px, 2px); }
+            30% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            50% { transform: translate(-1px, 2px); }
+            60% { transform: translate(-1px, 1px); }
+            70% { transform: translate(2px, 1px); }
+            80% { transform: translate(-1px, -1px); }
+            90% { transform: translate(2px, -1px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes static-noise-bg {
+            0% { background-position: 0 0; }
+            10% { background-position: -10px -10px; }
+            20% { background-position: -20px 5px; }
+            30% { background-position: 7px -25px; }
+            40% { background-position: 20px 25px; }
+            50% { background-position: -25px 10px; }
+            60% { background-position: 15px 5px; }
+            70% { background-position: 0px 15px; }
+            80% { background-position: 25px 35px; }
+            90% { background-position: -10px 10px; }
+        }
+
+        .glitch-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.1s;
+        }
+
+        .glitch-btn:hover {
+            /* Amber base with static noise overlay */
+            background-color: #f59e0b;
+            color: white;
+            /* SVG Noise Filter */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+            background-blend-mode: soft-light;
+            animation: glitch-shake 0.3s cubic-bezier(.36,.07,.19,.97) both infinite, static-noise-bg 0.5s steps(10) infinite;
+            box-shadow: 3px 3px 0px rgba(255, 255, 255, 0.2), -3px -3px 0px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,255,255,0.5);
+        }
+
     </style>
 </head>
 <body class="antialiased selection:bg-amber-500/30">
@@ -279,19 +359,27 @@
         </div>
         
         <div class="z-10 max-w-5xl">
+            <!-- Consolidated Release Promise -->
             <span class="inline-block text-amber-500 font-bold tracking-widest-extra uppercase text-[10px] mb-6 opacity-80">
-                New Music Available 2026
+                Summer Circle — Releasing 2026
             </span>
             <div class="relative inline-block mb-8">
                 <h1 id="hero-title" class="header-shimmer text-7xl md:text-[10rem] font-light tracking-tighter leading-none">
                     Summer <span class="italic font-serif">Circle</span>
                 </h1>
             </div>
-            <p id="scramble-quote" class="text-xl md:text-2xl text-slate-400 font-serif italic mb-12 max-w-3xl mx-auto leading-relaxed opacity-70">
+            <p id="scramble-quote" class="text-xl md:text-2xl text-slate-400 font-serif italic mb-10 max-w-3xl mx-auto leading-relaxed opacity-70">
                 "Capturing the feeling of a season returning, yet always appearing new."
             </p>
-            <div class="flex justify-center gap-12">
-                <a href="#featured" class="group flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:text-amber-400 transition-all">
+            
+            <!-- Primary CTA: Unavoidable -->
+            <div class="flex flex-col items-center gap-8">
+                <a href="#visuals" onclick="playPerformance()" class="glitch-btn inline-flex items-center gap-3 px-8 py-4 bg-zinc-100 hover:bg-amber-500 text-black hover:text-white font-bold uppercase tracking-[0.2em] text-xs rounded-sm">
+                    <i data-lucide="video" class="w-4 h-4"></i>
+                    Watch Performance
+                </a>
+                
+                <a href="#featured" class="group flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:text-amber-400 transition-all text-zinc-500">
                     The Narrative <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
                 </a>
             </div>
@@ -333,8 +421,9 @@
                         <p>
                             Recorded in an intimate setting that prioritizes natural resonance, the album serves as a meditation on cyclical time and the rituals of seasonal change.
                         </p>
+                        <!-- Consistent Release Promise -->
                         <p class="text-amber-500/80 tracking-widest uppercase text-xs font-bold">
-                            Coming 2026
+                            Summer Circle — Releasing 2026
                         </p>
                     </div>
                 </div>
@@ -427,8 +516,9 @@
 
             <div class="relative aspect-video w-full max-w-5xl mx-auto bg-zinc-950 rounded-sm overflow-hidden shadow-2xl border border-white/5">
                 <iframe 
+                    id="performance-video"
                     class="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700 opacity-80 hover:opacity-100" 
-                    src="https://www.youtube.com/embed/w0xrskcVaqg?rel=0&modestbranding=1" 
+                    src="https://www.youtube.com/embed/w0xrskcVaqg?rel=0&modestbranding=1&enablejsapi=1" 
                     title="Aaron Summerfield Performance" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -467,7 +557,7 @@
                     <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
                         <img src="Summer Circle Summoning cover design 4.jpg" alt="Summer Circle/Summoning EP" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
                     </div>
-                    <h4 class="text-lg font-bold tracking-tight mb-1 group-hover:text-amber-500 transition-colors uppercase">EP</h4>
+                    <h4 class="text-lg font-bold tracking-tight mb-1 group-hover:text-amber-500 transition-colors uppercase">Summer Circle/Summoning EP</h4>
                     <p class="text-xs text-zinc-500 italic font-serif">Aaron Summerfield</p>
                 </a>
 
@@ -491,10 +581,10 @@
                     <p class="text-slate-400 font-serif italic text-xl leading-relaxed mb-8">
                         Based in Denver, Aaron balances a performance practice with instructional leadership at the Community College of Aurora, specializing in music technology and jazz studies.
                     </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-zinc-900 text-[9px] font-bold uppercase tracking-widest text-zinc-500 border border-white/5">Jazz Performance</span>
-                        <span class="px-3 py-1 bg-zinc-900 text-[9px] font-bold uppercase tracking-widest text-zinc-500 border border-white/5">Recording Arts</span>
-                        <span class="px-3 py-1 bg-zinc-900 text-[9px] font-bold uppercase tracking-widest text-zinc-500 border border-white/5">Music Business</span>
+                    <!-- Improved Credential Formatting -->
+                    <div class="flex flex-col gap-2 border-l-2 border-zinc-800 pl-4">
+                        <span class="text-xs font-bold uppercase tracking-widest text-zinc-300">M.M. — Jazz Performance</span>
+                        <span class="text-[10px] uppercase tracking-wider text-zinc-500">(Recording Arts, Music Business)</span>
                     </div>
                 </div>
                 <div class="md:col-span-2 space-y-10 border-l border-white/5 pl-8 md:pl-16">
@@ -514,11 +604,34 @@
     <section id="contact" class="py-40 px-6 bg-zinc-950/20 border-t border-white/5">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-5xl md:text-8xl font-extralight tracking-tighter uppercase italic mb-12">Collaborate</h2>
-            <div class="space-y-8">
-                <a href="mailto:info@aaronsummerfield.com" class="block text-2xl md:text-4xl font-light hover:text-amber-500 transition-colors py-4 border-b border-white/5">
-                    info@aaronsummerfield.com
-                </a>
-                <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-8">
+            
+            <div class="space-y-12">
+                <!-- Contact Links -->
+                <div>
+                    <a href="mailto:info@aaronsummerfield.com" class="block text-2xl md:text-4xl font-light hover:text-amber-500 transition-colors py-4 border-b border-white/5 max-w-2xl mx-auto">
+                        info@aaronsummerfield.com
+                    </a>
+                    <p class="mt-4 text-xs text-zinc-500 uppercase tracking-widest">Next Performance: Inquire for bookings</p>
+                </div>
+
+                <!-- Mailing List / Essentials -->
+                <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto pt-8 border-t border-white/5">
+                    <div class="text-left space-y-4">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Newsletter</h4>
+                        <div class="flex gap-2">
+                            <input type="email" placeholder="Email Address" class="bg-zinc-900 border border-zinc-800 text-zinc-300 px-4 py-2 text-xs w-full focus:outline-none focus:border-amber-500 transition-colors">
+                            <button class="bg-zinc-800 hover:bg-amber-500 text-white px-4 py-2 text-xs font-bold uppercase tracking-widest transition-colors">Join</button>
+                        </div>
+                    </div>
+                    <div class="text-left space-y-4 md:text-right md:items-end flex flex-col">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Press / Industry</h4>
+                        <a href="#" class="inline-block text-xs text-zinc-300 hover:text-white border border-zinc-800 hover:border-zinc-500 px-6 py-2 transition-all uppercase tracking-widest">
+                            Download EPK (PDF)
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-12">
                     <a href="https://www.instagram.com/aaronsummerfield" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-[0.4em]">Instagram</a>
                     <a href="https://www.facebook.com/AaronSummerfieldMusic/" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-[0.4em]">Facebook</a>
                     <a href="https://www.youtube.com/channel/UCTjdySQa56Ri16UY-7RZnZA" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-[0.4em]">YouTube</a>
@@ -532,8 +645,8 @@
         <p class="text-[9px] font-bold uppercase tracking-[0.5em]">
             © 2025 Aaron Summerfield
         </p>
-        <!-- Hidden Stats Counter -->
-        <div id="stats-counter" class="mt-4 text-[9px] font-mono select-all transition-all duration-500">
+        <!-- Hidden Stats Counter (UX Decision: Hidden to prevent 'empty room' signal) -->
+        <div id="stats-counter" class="mt-4 text-[9px] font-mono select-all transition-all duration-500" style="display: none;">
             <span class="shimmer-text">
                 Views: <span id="view-count">0</span> Total Listens: <span id="listen-count">0</span>
             </span>
@@ -558,6 +671,7 @@
 
         const initStats = async (user) => {
             if (!user) return;
+            // Listen to stats even if hidden (for future admin use)
             onSnapshot(statsDocRef, (docSnap) => {
                 if (docSnap.exists()) {
                     const data = docSnap.data();
@@ -852,6 +966,16 @@
                     clearInterval(fadeInterval);
                 }
             }, 50);
+        }
+
+        // Auto-play video on CTA click
+        function playPerformance() {
+            const video = document.getElementById('performance-video');
+            const src = video.getAttribute('src');
+            // Append autoplay if not already present
+            if (!src.includes('autoplay=1')) {
+                video.setAttribute('src', src + '&autoplay=1');
+            }
         }
     </script>
 </body>

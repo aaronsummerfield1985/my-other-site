@@ -309,6 +309,12 @@
             text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,255,255,0.5);
         }
 
+        /* Spotify Glitch Effect */
+        .spotify-glitch:hover svg {
+            animation: glitch-shake 0.3s cubic-bezier(.36,.07,.19,.97) both infinite;
+            filter: drop-shadow(2px 0 rgba(255,0,0,0.5)) drop-shadow(-2px 0 rgba(0,255,255,0.5));
+        }
+
     </style>
 </head>
 <body class="antialiased selection:bg-amber-500/30">
@@ -477,6 +483,16 @@
                                     <source id="audio-source" src="IntegratedCounterpoint1master.m4a" type="audio/mp4">
                                     Your browser does not support the audio element.
                                 </audio>
+
+                                <!-- Spotify Integration -->
+                                <div class="flex justify-end pt-2">
+                                    <a href="https://open.spotify.com/artist/64tM7eKzGdIS5PkcNhvhrc?si=wSoaIuTpTFeKnAydswPUvQ" target="_blank" rel="noopener noreferrer" class="spotify-glitch group flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500 hover:text-[#1DB954] transition-all duration-300">
+                                        <span class="opacity-0 group-hover:opacity-100 transition-opacity translate-x-2 group-hover:translate-x-0 duration-500">Hear more on Spotify</span>
+                                        <div class="transition-transform group-hover:scale-110">
+                                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.508 17.302c-.223.367-.704.484-1.062.261-2.874-1.755-6.491-2.152-10.748-1.178-.418.096-.837-.168-.933-.586-.096-.418.168-.837.586-.933 4.657-1.065 8.647-.618 11.896 1.365.358.223.475.704.261 1.071zm1.47-3.254c-.28.455-.875.597-1.33.317-3.29-2.022-8.31-2.61-12.196-1.43-.513.156-1.05-.145-1.206-.658-.156-.513.145-1.05.658-1.206 4.45-1.35 10-1.13 13.75 1.18.455.28.597.875.324 1.327zm.126-3.385c-3.95-2.346-10.462-2.564-14.25-1.41-.606.184-1.246-.17-1.43-.776-.184-.606.17-1.246.776-1.43 4.36-1.32 11.55-1.06 16.08 1.63.546.324.726 1.03.402 1.576-.324.546-1.03.726-1.576.402z"/></svg>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 

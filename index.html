@@ -661,7 +661,7 @@
                         <div class="flex flex-col gap-2">
                             <div class="flex gap-2">
                                 <input id="newsletter-email" type="email" placeholder="Email Address" class="bg-black/60 group-hover:bg-black/80 backdrop-blur-md border border-zinc-800 text-zinc-300 px-4 py-2 text-xs w-full focus:outline-none focus:border-amber-500 transition-all duration-500">
-                                <button id="newsletter-btn" class="bg-zinc-800 hover:bg-amber-500 text-white px-4 py-2 text-xs font-bold uppercase tracking-widest transition-colors">Join</button>
+                                <button id="newsletter-btn" type="button" class="bg-zinc-800 hover:bg-amber-500 text-white px-4 py-2 text-xs font-bold uppercase tracking-widest transition-colors">Join</button>
                             </div>
                             <p id="newsletter-msg" class="text-[10px] h-4 text-amber-500 font-bold uppercase tracking-widest opacity-0 transition-opacity duration-500"></p>
                         </div>
@@ -758,37 +758,6 @@
                 await setDoc(statsDocRef, { listens: increment(1) }, { merge: true });
             } catch (e) {}
         };
-
-        // Newsletter Logic
-        const newsletterBtn = document.getElementById('newsletter-btn');
-        const newsletterEmailInput = document.getElementById('newsletter-email');
-        const newsletterMsg = document.getElementById('newsletter-msg');
-
-        if (newsletterBtn) {
-            newsletterBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const email = newsletterEmailInput.value.trim();
-                
-                if (!email || !email.includes('@')) {
-                    newsletterMsg.textContent = "Please enter a valid email";
-                    newsletterMsg.classList.remove('opacity-0');
-                    return;
-                }
-
-                // Lead to Google Form with pre-filled email
-                // Constructing the URL with the standard Google pre-fill parameter structure
-                const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSc7m1V_v6L3S-O-X6X-S-W-T-Z-U/viewform";
-                const prefilledUrl = `${formBaseUrl}?usp=pp_url&entry.1045781291=${encodeURIComponent(email)}`;
-                
-                // Fallback to the short link if redirect fails
-                const shortLinkUrl = `https://forms.gle/VHt3r4u5Ze3XRW1L8?email=${encodeURIComponent(email)}`;
-                
-                window.open(shortLinkUrl, '_blank');
-                
-                newsletterMsg.textContent = "Opening Mailing List...";
-                newsletterMsg.classList.remove('opacity-0');
-            });
-        }
     </script>
 
     <!-- Interactive Header Audio -->
@@ -1053,6 +1022,36 @@
             });
         }
 
+        // Newsletter Logic (Moved to main script for better reliability)
+        const newsletterBtn = document.getElementById('newsletter-btn');
+        const newsletterEmailInput = document.getElementById('newsletter-email');
+        const newsletterMsg = document.getElementById('newsletter-msg');
+
+        if (newsletterBtn) {
+            newsletterBtn.addEventListener('click', () => {
+                const email = newsletterEmailInput.value.trim();
+                
+                if (!email || !email.includes('@')) {
+                    newsletterMsg.textContent = "Please enter a valid email";
+                    newsletterMsg.classList.remove('opacity-0');
+                    return;
+                }
+
+                // Lead to your new Google Form link (Direct short link)
+                const shortLinkUrl = "https://forms.gle/VHt3r4u5Ze3XRW1L8";
+                
+                // If possible, try to open the pre-filled long URL
+                // Based on your previous link, the entry ID is likely the same
+                const longFormUrl = `https://docs.google.com/forms/d/e/1FAIpQLSepBJfN3LbxFrga4z04Jvkj70g4lqnWXZvgxW2Pczs9LG_BkA/viewform?usp=pp_url&entry.1045781291=${encodeURIComponent(email)}`;
+                
+                // Open in new tab
+                window.open(longFormUrl, '_blank');
+                
+                newsletterMsg.textContent = "Opening Mailing List...";
+                newsletterMsg.classList.remove('opacity-0');
+            });
+        }
+
         function fadeOutAudio() {
             clearTimeout(audioTimeout);
             clearInterval(fadeInterval);
@@ -1079,3 +1078,4 @@
     </script>
 </body>
 </html>
+

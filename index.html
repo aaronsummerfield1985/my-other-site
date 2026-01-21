@@ -205,20 +205,20 @@
         
         .header-shimmer:hover {
             /* Pulse animation on hover */
-            animation: headerPulse 3s infinite ease-in-out;
+            animation: headerPulse 3s infinite ease-in-out, static-noise-bg 0.2s steps(5) infinite;
             
-            /* Dramatic Text Shimmer */
-            background-image: linear-gradient(
-                to right, 
-                #e2e8f0 0%, 
-                #e2e8f0 30%, 
-                #ffffff 50%, 
-                #e2e8f0 70%, 
-                #e2e8f0 100%
-            );
-            background-size: 200% auto;
+            /* TV Static Texture + White Gradient Base */
+            background-image: 
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E"),
+                linear-gradient(to bottom, #ffffff 0%, #cbd5e1 100%);
+            
+            background-size: 120px 120px, 100% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: headerPulse 3s infinite ease-in-out, shimmer-animation 1.5s linear infinite;
+            
+            /* RGB Split (Chromatic Aberration) */
+            text-shadow: 2px 0px 1px rgba(255,0,0,0.3), -2px 0px 1px rgba(0,255,255,0.3);
         }
 
         /* Background glow for the header */
@@ -308,6 +308,33 @@
             text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,255,255,0.5);
         }
 
+        /* Glitch Pan & Scan Animation for Hero Background */
+        @keyframes glitch-pan-scan {
+            0% { transform: scale(1.0) translate(0, 0); filter: grayscale(100%) brightness(0.5); }
+            10% { transform: scale(1.05) translate(-1%, -1%); }
+            20% { transform: scale(1.05) translate(1%, 1%); }
+            /* Sharp Glitch Jitter */
+            21% { transform: scale(1.1) translate(-2%, 2%); filter: grayscale(0%) contrast(1.5) hue-rotate(90deg); opacity: 0.6; }
+            22% { transform: scale(1.05) translate(1%, 1%); filter: grayscale(100%) brightness(0.5); opacity: 0.3; }
+            
+            40% { transform: scale(1.05) translate(-2%, 0); }
+            60% { transform: scale(1.1) translate(2%, -2%); }
+            /* Invert Flash */
+            61% { transform: scale(1.15) translate(-5px, 5px); filter: invert(1); opacity: 0.4; }
+            62% { transform: scale(1.1) translate(2%, -2%); filter: grayscale(100%) brightness(0.5); opacity: 0.3; }
+            
+            80% { transform: scale(1.05) translate(0, 2%); }
+            90% { transform: scale(1.02) translate(-1%, -1%); filter: grayscale(100%) brightness(0.6); }
+            100% { transform: scale(1.0) translate(0, 0); filter: grayscale(100%) brightness(0.5); }
+        }
+
+        /* Apply animation on hover of the container */
+        #hero-section:hover #hero-bg-img {
+            animation: glitch-pan-scan 6s infinite linear;
+            transition: none; /* Disable smooth transition to allow sharp glitches */
+            opacity: 0.4; /* Slightly brighter during interaction */
+        }
+
     </style>
 </head>
 <body class="antialiased selection:bg-amber-500/30">
@@ -347,33 +374,34 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative h-screen flex items-center justify-center px-6 text-center overflow-hidden">
+    <header id="hero-section" class="relative h-screen flex items-center justify-center px-6 text-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <!-- Mood Image -->
             <img 
+                id="hero-bg-img"
                 src="Summer Circle cover design 8.jpg" 
                 alt="Atmosphere" 
                 class="w-full h-full object-cover opacity-30 grayscale brightness-50"
             >
-            <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
         </div>
         
-        <div class="z-10 max-w-5xl">
+        <div class="z-10 max-w-5xl pointer-events-none"> <!-- Added pointer-events-none to container so hover hits header easily -->
             <!-- Consolidated Release Promise -->
-            <span class="inline-block text-amber-500 font-bold tracking-widest-extra uppercase text-[10px] mb-6 opacity-80">
+            <span class="inline-block text-amber-500 font-bold tracking-widest-extra uppercase text-[10px] mb-6 opacity-80 pointer-events-auto"> <!-- Re-enable pointer events for interactive elements -->
                 Summer Circle — Releasing 2026
             </span>
-            <div class="relative inline-block mb-8">
+            <div class="relative inline-block mb-8 pointer-events-auto">
                 <h1 id="hero-title" class="header-shimmer text-7xl md:text-[10rem] font-light tracking-tighter leading-none">
                     Summer <span class="italic font-serif">Circle</span>
                 </h1>
             </div>
-            <p id="scramble-quote" class="text-xl md:text-2xl text-slate-400 font-serif italic mb-10 max-w-3xl mx-auto leading-relaxed opacity-70">
+            <p id="scramble-quote" class="text-xl md:text-2xl text-slate-400 font-serif italic mb-10 max-w-3xl mx-auto leading-relaxed opacity-70 pointer-events-auto">
                 "Capturing the feeling of a season returning, yet always appearing new."
             </p>
             
             <!-- Primary CTA: Unavoidable -->
-            <div class="flex flex-col items-center gap-8">
+            <div class="flex flex-col items-center gap-8 pointer-events-auto">
                 <a href="#visuals" onclick="playPerformance()" class="glitch-btn inline-flex items-center gap-3 px-8 py-4 bg-zinc-100 hover:bg-amber-500 text-black hover:text-white font-bold uppercase tracking-[0.2em] text-xs rounded-sm">
                     <i data-lucide="video" class="w-4 h-4"></i>
                     Watch Performance
@@ -385,7 +413,7 @@
             </div>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20">
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none">
             <div class="w-px h-16 bg-gradient-to-b from-white to-transparent"></div>
         </div>
     </header>
@@ -618,9 +646,12 @@
                 <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto pt-8 border-t border-white/5">
                     <div class="text-left space-y-4">
                         <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Newsletter</h4>
-                        <div class="flex gap-2">
-                            <input type="email" placeholder="Email Address" class="bg-zinc-900 border border-zinc-800 text-zinc-300 px-4 py-2 text-xs w-full focus:outline-none focus:border-amber-500 transition-colors">
-                            <button class="bg-zinc-800 hover:bg-amber-500 text-white px-4 py-2 text-xs font-bold uppercase tracking-widest transition-colors">Join</button>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex gap-2">
+                                <input id="newsletter-email" type="email" placeholder="Email Address" class="bg-zinc-900 border border-zinc-800 text-zinc-300 px-4 py-2 text-xs w-full focus:outline-none focus:border-amber-500 transition-colors">
+                                <button id="newsletter-btn" class="bg-zinc-800 hover:bg-amber-500 text-white px-4 py-2 text-xs font-bold uppercase tracking-widest transition-colors">Join</button>
+                            </div>
+                            <p id="newsletter-msg" class="text-[10px] h-4 text-amber-500 font-bold uppercase tracking-widest opacity-0 transition-opacity duration-500"></p>
                         </div>
                     </div>
                     <div class="text-left space-y-4 md:text-right md:items-end flex flex-col">
@@ -657,7 +688,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, onSnapshot, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, onSnapshot, increment, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const firebaseConfig = JSON.parse(__firebase_config);
         const app = initializeApp(firebaseConfig);
@@ -709,6 +740,58 @@
                 await setDoc(statsDocRef, { listens: increment(1) }, { merge: true });
             } catch (e) {}
         };
+
+        // Newsletter Logic
+        const newsletterBtn = document.getElementById('newsletter-btn');
+        const newsletterEmail = document.getElementById('newsletter-email');
+        const newsletterMsg = document.getElementById('newsletter-msg');
+
+        if (newsletterBtn) {
+            newsletterBtn.addEventListener('click', async () => {
+                const email = newsletterEmail.value;
+                if (!email || !email.includes('@')) {
+                    newsletterMsg.textContent = "Please enter a valid email";
+                    newsletterMsg.classList.remove('opacity-0');
+                    return;
+                }
+
+                if (!auth.currentUser) {
+                    newsletterMsg.textContent = "Connecting...";
+                    newsletterMsg.classList.remove('opacity-0');
+                    // Wait briefly for auth if not ready
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    if (!auth.currentUser) {
+                        newsletterMsg.textContent = "Connection error. Try again.";
+                        return;
+                    }
+                }
+
+                newsletterBtn.disabled = true;
+                newsletterBtn.textContent = "...";
+                newsletterMsg.classList.add('opacity-0');
+
+                try {
+                    await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'newsletter'), {
+                        email: email,
+                        timestamp: serverTimestamp(),
+                        userId: auth.currentUser.uid
+                    });
+                    
+                    newsletterEmail.value = "";
+                    newsletterMsg.textContent = "Subscribed. Thank you.";
+                    newsletterMsg.classList.remove('opacity-0');
+                    newsletterBtn.textContent = "Joined";
+                    newsletterBtn.classList.add('bg-amber-500', 'text-black');
+                    newsletterBtn.classList.remove('bg-zinc-800', 'text-white');
+                } catch (e) {
+                    console.error("Newsletter error:", e);
+                    newsletterMsg.textContent = "Error saving. Please try again.";
+                    newsletterMsg.classList.remove('opacity-0');
+                    newsletterBtn.disabled = false;
+                    newsletterBtn.textContent = "Join";
+                }
+            });
+        }
     </script>
 
     <!-- Interactive Header Audio -->

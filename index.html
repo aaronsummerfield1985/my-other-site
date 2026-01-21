@@ -1022,13 +1022,14 @@
             });
         }
 
-        // Newsletter Logic (Moved to main script for better reliability)
+        // Newsletter Logic
         const newsletterBtn = document.getElementById('newsletter-btn');
         const newsletterEmailInput = document.getElementById('newsletter-email');
         const newsletterMsg = document.getElementById('newsletter-msg');
 
         if (newsletterBtn) {
-            newsletterBtn.addEventListener('click', () => {
+            newsletterBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 const email = newsletterEmailInput.value.trim();
                 
                 if (!email || !email.includes('@')) {
@@ -1037,18 +1038,22 @@
                     return;
                 }
 
-                // Lead to your new Google Form link (Direct short link)
-                const shortLinkUrl = "https://forms.gle/VHt3r4u5Ze3XRW1L8";
-                
-                // If possible, try to open the pre-filled long URL
-                // Based on your previous link, the entry ID is likely the same
-                const longFormUrl = `https://docs.google.com/forms/d/e/1FAIpQLSepBJfN3LbxFrga4z04Jvkj70g4lqnWXZvgxW2Pczs9LG_BkA/viewform?usp=pp_url&entry.1045781291=${encodeURIComponent(email)}`;
+                // Lead to your new Google Form link long-form for reliable auto-population
+                // Base URL from the long link provided: FAIpQLSepBJfN3LbxFrga4z04Jvkj70g4lqnWXZvgxW2Pczs9LG_BkA
+                const formId = "1FAIpQLSepBJfN3LbxFrga4z04Jvkj70g4lqnWXZvgxW2Pczs9LG_BkA";
+                const prefilledUrl = `https://docs.google.com/forms/d/e/${formId}/viewform?usp=pp_url&entry.1045781291=${encodeURIComponent(email)}`;
                 
                 // Open in new tab
-                window.open(longFormUrl, '_blank');
+                window.open(prefilledUrl, '_blank');
                 
                 newsletterMsg.textContent = "Opening Mailing List...";
                 newsletterMsg.classList.remove('opacity-0');
+                
+                // Clear input after a short delay
+                setTimeout(() => {
+                    newsletterEmailInput.value = "";
+                    newsletterMsg.classList.add('opacity-0');
+                }, 3000);
             });
         }
 
@@ -1078,4 +1083,5 @@
     </script>
 </body>
 </html>
+
 

@@ -591,36 +591,36 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="relative py-40 px-6 bg-zinc-950/20 border-t border-white/5 overflow-hidden">
+    <section id="contact" class="group relative py-40 px-6 bg-zinc-950/20 border-t border-white/5 overflow-hidden">
         <!-- Background Underlay Image -->
-        <div class="absolute inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             <img 
                 src="Headshot 1.jpg" 
                 alt="Aaron Summerfield Portrait" 
-                class="w-full h-full object-cover opacity-20 grayscale brightness-75 mix-blend-luminosity"
+                class="w-full h-full object-cover opacity-20 group-hover:opacity-60 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-100 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-1000 ease-in-out transform scale-100 group-hover:scale-105"
             >
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black transition-opacity duration-1000 group-hover:opacity-40"></div>
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto text-center">
-            <h2 class="text-5xl md:text-8xl font-extralight tracking-tighter uppercase italic mb-12">Collaborate</h2>
+            <h2 class="text-5xl md:text-8xl font-extralight tracking-tighter uppercase italic mb-12 transition-all duration-700 group-hover:text-amber-500 group-hover:translate-y-[-4px]">Collaborate</h2>
             
             <div class="space-y-12">
                 <!-- Contact Links -->
-                <div>
-                    <a href="mailto:info@aaronsummerfield.com" class="block text-2xl md:text-4xl font-light hover:text-amber-500 transition-colors py-4 border-b border-white/10 max-w-2xl mx-auto">
+                <div class="relative">
+                    <a href="mailto:info@aaronsummerfield.com" class="block text-2xl md:text-4xl font-light hover:text-amber-500 transition-colors py-4 border-b border-white/10 max-w-2xl mx-auto relative z-20">
                         info@aaronsummerfield.com
                     </a>
-                    <p class="mt-4 text-xs text-zinc-500 uppercase tracking-widest bg-black/40 inline-block px-4 py-1 rounded-sm">Next Performance: Inquire for bookings</p>
+                    <p class="mt-4 text-xs text-zinc-500 uppercase tracking-widest bg-black/40 group-hover:bg-black/70 backdrop-blur-sm inline-block px-4 py-1 rounded-sm transition-all duration-700">Next Performance: Inquire for bookings</p>
                 </div>
 
                 <!-- Mailing List / Essentials -->
-                <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto pt-8 border-t border-white/10">
+                <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto pt-8 border-t border-white/10 relative z-20">
                     <div class="text-left space-y-4">
                         <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Newsletter</h4>
                         <div class="flex flex-col gap-2">
                             <div class="flex gap-2">
-                                <input id="newsletter-email" type="email" placeholder="Email Address" class="bg-black/60 backdrop-blur-md border border-zinc-800 text-zinc-300 px-4 py-2 text-xs w-full focus:outline-none focus:border-amber-500 transition-colors">
+                                <input id="newsletter-email" type="email" placeholder="Email Address" class="bg-black/60 group-hover:bg-black/80 backdrop-blur-md border border-zinc-800 text-zinc-300 px-4 py-2 text-xs w-full focus:outline-none focus:border-amber-500 transition-all duration-500">
                                 <button id="newsletter-btn" class="bg-zinc-800 hover:bg-amber-500 text-white px-4 py-2 text-xs font-bold uppercase tracking-widest transition-colors">Join</button>
                             </div>
                             <p id="newsletter-msg" class="text-[10px] h-4 text-amber-500 font-bold uppercase tracking-widest opacity-0 transition-opacity duration-500"></p>
@@ -628,16 +628,16 @@
                     </div>
                     <div class="text-left space-y-4 md:text-right md:items-end flex flex-col">
                         <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Press / Industry</h4>
-                        <a href="#" class="inline-block text-xs text-zinc-100 bg-black/40 backdrop-blur-sm hover:text-white border border-zinc-800 hover:border-zinc-500 px-6 py-2 transition-all uppercase tracking-widest">
+                        <a href="#" class="inline-block text-xs text-zinc-100 bg-black/40 group-hover:bg-black/70 backdrop-blur-sm hover:text-white border border-zinc-800 hover:border-zinc-500 px-6 py-2 transition-all uppercase tracking-widest">
                             Download EPK (PDF)
                         </a>
                     </div>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-12">
-                    <a href="https://www.instagram.com/aaronsummerfield" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-[0.4em] bg-black/20 px-2 py-1">Instagram</a>
-                    <a href="https://www.facebook.com/AaronSummerfieldMusic/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-[0.4em] bg-black/20 px-2 py-1">Facebook</a>
-                    <a href="https://www.youtube.com/channel/UCTjdySQa56Ri16UY-7RZnZA" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-[0.4em] bg-black/20 px-2 py-1">YouTube</a>
+                <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-12 relative z-20">
+                    <a href="https://www.instagram.com/aaronsummerfield" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-all duration-500 uppercase text-[10px] font-bold tracking-[0.4em] bg-black/20 group-hover:bg-black/60 px-2 py-1">Instagram</a>
+                    <a href="https://www.facebook.com/AaronSummerfieldMusic/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-all duration-500 uppercase text-[10px] font-bold tracking-[0.4em] bg-black/20 group-hover:bg-black/60 px-2 py-1">Facebook</a>
+                    <a href="https://www.youtube.com/channel/UCTjdySQa56Ri16UY-7RZnZA" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-all duration-500 uppercase text-[10px] font-bold tracking-[0.4em] bg-black/20 group-hover:bg-black/60 px-2 py-1">YouTube</a>
                 </div>
             </div>
         </div>

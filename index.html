@@ -270,7 +270,7 @@
             text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,255,255,0.5);
         }
 
-        /* Glitch Pan & Scan Animation for Hero Background */
+        /* Glitch Pan & Scan Animation for Backgrounds */
         @keyframes glitch-pan-scan {
             0% { transform: scale(1.0) translate(0, 0); filter: grayscale(100%) brightness(0.5); }
             10% { transform: scale(1.05) translate(-1%, -1%); }
@@ -290,11 +290,17 @@
             100% { transform: scale(1.0) translate(0, 0); filter: grayscale(100%) brightness(0.5); }
         }
 
-        /* Apply animation on hover of the container */
+        /* Apply animation on hover of the hero container */
         #hero-section:hover #hero-bg-img {
             animation: glitch-pan-scan 6s infinite linear;
-            transition: none; /* Disable smooth transition to allow sharp glitches */
-            opacity: 0.4; /* Slightly brighter during interaction */
+            transition: none;
+            opacity: 0.4;
+        }
+
+        /* Apply animation on hover of the contact container */
+        #contact:hover #contact-bg-img {
+            animation: glitch-pan-scan 8s infinite linear;
+            transition: none;
         }
 
     </style>
@@ -592,9 +598,10 @@
 
     <!-- Contact -->
     <section id="contact" class="group relative py-40 px-6 bg-zinc-950/20 border-t border-white/5 overflow-hidden">
-        <!-- Background Underlay Image -->
+        <!-- Background Underlay Image with Glitch Effect -->
         <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             <img 
+                id="contact-bg-img"
                 src="Headshot 1.jpg" 
                 alt="Aaron Summerfield Portrait" 
                 class="w-full h-full object-cover opacity-20 group-hover:opacity-60 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-100 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-1000 ease-in-out transform scale-100 group-hover:scale-105"

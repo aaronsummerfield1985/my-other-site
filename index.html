@@ -309,10 +309,19 @@
             text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,255,255,0.5);
         }
 
-        /* Spotify Glitch Effect */
-        .spotify-glitch:hover svg {
-            animation: glitch-shake 0.3s cubic-bezier(.36,.07,.19,.97) both infinite;
-            filter: drop-shadow(2px 0 rgba(255,0,0,0.5)) drop-shadow(-2px 0 rgba(0,255,255,0.5));
+        /* Social/Spotify Aggressive Glitch Effect */
+        @keyframes chromatic-flicker {
+            0% { filter: drop-shadow(2px 0 #ff0000) drop-shadow(-2px 0 #00ffff) hue-rotate(0deg); opacity: 1; }
+            25% { filter: drop-shadow(-1px 2px #ff0000) drop-shadow(1px -2px #00ffff) hue-rotate(90deg); opacity: 0.8; }
+            50% { filter: drop-shadow(3px -1px #ff0000) drop-shadow(-3px 1px #00ffff) hue-rotate(180deg); opacity: 1; }
+            75% { filter: drop-shadow(-2px -2px #ff0000) drop-shadow(2px 2px #00ffff) hue-rotate(270deg); opacity: 0.9; }
+            100% { filter: drop-shadow(2px 0 #ff0000) drop-shadow(-2px 0 #00ffff) hue-rotate(360deg); opacity: 1; }
+        }
+
+        .social-glitch:hover i, .spotify-glitch:hover svg {
+            animation: glitch-shake 0.2s cubic-bezier(.36,.07,.19,.97) both infinite, chromatic-flicker 0.15s steps(2) infinite;
+            color: white !important;
+            fill: white !important;
         }
 
     </style>
@@ -663,10 +672,16 @@
                     </div>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-8 md:gap-12 pt-12 relative z-20">
-                    <a href="https://www.instagram.com/aaronsummerfield" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-all duration-500 uppercase text-[10px] font-bold tracking-[0.4em] bg-black/20 group-hover:bg-black/60 px-2 py-1">Instagram</a>
-                    <a href="https://www.facebook.com/AaronSummerfieldMusic/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-all duration-500 uppercase text-[10px] font-bold tracking-[0.4em] bg-black/20 group-hover:bg-black/60 px-2 py-1">Facebook</a>
-                    <a href="https://www.youtube.com/channel/UCTjdySQa56Ri16UY-7RZnZA" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-all duration-500 uppercase text-[10px] font-bold tracking-[0.4em] bg-black/20 group-hover:bg-black/60 px-2 py-1">YouTube</a>
+                <div class="flex flex-wrap justify-center gap-12 pt-12 relative z-20">
+                    <a href="https://www.instagram.com/aaronsummerfield" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full">
+                        <i data-lucide="instagram" class="w-6 h-6"></i>
+                    </a>
+                    <a href="https://www.facebook.com/AaronSummerfieldMusic/" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full">
+                        <i data-lucide="facebook" class="w-6 h-6"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCTjdySQa56Ri16UY-7RZnZA" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full">
+                        <i data-lucide="youtube" class="w-6 h-6"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -748,7 +763,7 @@
         const newsletterMsg = document.getElementById('newsletter-msg');
 
         if (newsletterBtn) {
-            newsletterBtn.addEventListener('click', async () => {
+            newsletterBtn.addEventListener('click', () => {
                 const email = newsletterEmailInput.value;
                 if (!email || !email.includes('@')) {
                     newsletterMsg.textContent = "Please enter a valid email";
@@ -756,41 +771,17 @@
                     return;
                 }
 
-                if (!auth.currentUser) {
-                    newsletterMsg.textContent = "Connecting...";
-                    newsletterMsg.classList.remove('opacity-0');
-                    // Wait briefly for auth if not ready
-                    await new Promise(resolve => setTimeout(resolve, 1000));
-                    if (!auth.currentUser) {
-                        newsletterMsg.textContent = "Connection error. Try again.";
-                        return;
-                    }
-                }
-
-                newsletterBtn.disabled = true;
-                newsletterBtn.textContent = "...";
-                newsletterMsg.classList.add('opacity-0');
-
-                try {
-                    await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'newsletter'), {
-                        email: email,
-                        timestamp: serverTimestamp(),
-                        userId: auth.currentUser.uid
-                    });
-                    
-                    newsletterEmailInput.value = "";
-                    newsletterMsg.textContent = "Subscribed. Thank you.";
-                    newsletterMsg.classList.remove('opacity-0');
-                    newsletterBtn.textContent = "Joined";
-                    newsletterBtn.classList.add('bg-amber-500', 'text-black');
-                    newsletterBtn.classList.remove('bg-zinc-800', 'text-white');
-                } catch (e) {
-                    console.error("Newsletter error:", e);
-                    newsletterMsg.textContent = "Error saving. Please try again.";
-                    newsletterMsg.classList.remove('opacity-0');
-                    newsletterBtn.disabled = false;
-                    newsletterBtn.textContent = "Join";
-                }
+                // Lead to Google Form with pre-filled email
+                const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSepBJfN3LbxFrga4z04Jvkj70g4lqnWXZvgxW2Pczs9LG_BkA/viewform";
+                // entry.1045781291 is a common entry ID for the first text field, 
+                // but pre-filled URLs use the format: entry.ID=value
+                // For your specific form, we construct the URL and open it.
+                const prefilledUrl = `${formBaseUrl}?usp=pp_url&entry.1045781291=${encodeURIComponent(email)}`;
+                
+                window.open(prefilledUrl, '_blank');
+                
+                newsletterMsg.textContent = "Redirecting to form...";
+                newsletterMsg.classList.remove('opacity-0');
             });
         }
     </script>

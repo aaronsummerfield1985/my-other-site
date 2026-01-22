@@ -68,6 +68,9 @@
         ::-webkit-scrollbar-track {
             background: #000;
         }
+        ::-webkit-scrollbar-bottom-track {
+            background: #000;
+        }
         ::-webkit-scrollbar-thumb {
             background: #18181b;
             border-radius: 10px;
@@ -318,7 +321,7 @@
             100% { filter: drop-shadow(2px 0 #ff0000) drop-shadow(-2px 0 #00ffff) hue-rotate(360deg); opacity: 1; }
         }
 
-        /* Target SVGs because Lucide replaces <i> tags */
+        /* Target SVGs because Lucide replaces <i> tags with SVGs */
         .social-glitch:hover svg, .spotify-glitch:hover svg {
             animation: glitch-shake 0.2s cubic-bezier(.36,.07,.19,.97) both infinite, chromatic-flicker 0.15s steps(2) infinite !important;
             color: white !important;
@@ -659,16 +662,16 @@
                     <div class="text-left space-y-4">
                         <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Newsletter</h4>
                         <div class="flex flex-col gap-2">
-                            <div class="flex gap-2">
+                            <form id="newsletter-form" class="flex gap-2">
                                 <input id="newsletter-email" type="email" placeholder="Email Address" class="bg-black/60 group-hover:bg-black/80 backdrop-blur-md border border-zinc-800 text-zinc-300 px-4 py-2 text-xs w-full focus:outline-none focus:border-amber-500 transition-all duration-500">
-                                <button id="newsletter-btn" type="button" class="bg-zinc-800 hover:bg-amber-500 text-white px-4 py-2 text-xs font-bold uppercase tracking-widest transition-colors">Join</button>
-                            </div>
+                                <button id="newsletter-btn" type="submit" class="glitch-btn bg-zinc-800 text-white px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-sm transition-colors">Join</button>
+                            </form>
                             <p id="newsletter-msg" class="text-[10px] h-4 text-amber-500 font-bold uppercase tracking-widest opacity-0 transition-opacity duration-500"></p>
                         </div>
                     </div>
                     <div class="text-left space-y-4 md:text-right md:items-end flex flex-col">
                         <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Press / Industry</h4>
-                        <a href="Aaron Summerfield EPK.pdf" download="Aaron Summerfield EPK.pdf" class="inline-block text-xs text-zinc-100 bg-black/40 group-hover:bg-black/70 backdrop-blur-sm hover:text-white border border-zinc-800 hover:border-zinc-500 px-6 py-2 transition-all uppercase tracking-widest">
+                        <a href="Aaron Summerfield EPK.pdf" download="Aaron Summerfield EPK.pdf" class="glitch-btn inline-block text-xs text-zinc-100 bg-black/40 group-hover:bg-black/70 backdrop-blur-sm hover:text-white border border-zinc-800 hover:border-zinc-500 px-6 py-2 transition-all uppercase tracking-widest rounded-sm">
                             Download EPK (PDF)
                         </a>
                     </div>
@@ -1026,9 +1029,10 @@
         const newsletterBtn = document.getElementById('newsletter-btn');
         const newsletterEmailInput = document.getElementById('newsletter-email');
         const newsletterMsg = document.getElementById('newsletter-msg');
+        const newsletterForm = document.getElementById('newsletter-form');
 
-        if (newsletterBtn) {
-            newsletterBtn.addEventListener('click', (e) => {
+        if (newsletterBtn && newsletterForm) {
+            newsletterForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const email = newsletterEmailInput.value.trim();
                 
@@ -1038,19 +1042,17 @@
                     return;
                 }
 
-                // Lead to Google Form with pre-filled email and AUTO-SUBMISSION
-                // By posting to formResponse, we skip the form UI entirely.
+                // POST to formResponse for auto-submission
                 const formId = "1FAIpQLSepBJfN3LbxFrga4z04Jvkj70g4lqnWXZvgxW2Pczs9LG_BkA";
                 const submitUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
                 
-                // Construct a hidden form and submit it via POST
                 const hiddenForm = document.createElement('form');
                 hiddenForm.action = submitUrl;
                 hiddenForm.method = 'POST';
-                hiddenForm.target = '_blank'; // Opens the Google "Thank You" page in a new tab
+                hiddenForm.target = '_blank';
 
                 const hiddenInput = document.createElement('input');
-                hiddenInput.name = 'entry.424566785'; // Your Entry ID
+                hiddenInput.name = 'entry.424566785'; // Verified Entry ID
                 hiddenInput.value = email;
                 hiddenForm.appendChild(hiddenInput);
 
@@ -1061,7 +1063,6 @@
                 newsletterMsg.textContent = "Joining Mailing List...";
                 newsletterMsg.classList.remove('opacity-0');
                 
-                // Clear input after a short delay
                 setTimeout(() => {
                     newsletterEmailInput.value = "";
                     newsletterMsg.classList.add('opacity-0');
@@ -1095,5 +1096,6 @@
     </script>
 </body>
 </html>
+
 
 

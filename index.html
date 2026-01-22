@@ -668,7 +668,7 @@
                     </div>
                     <div class="text-left space-y-4 md:text-right md:items-end flex flex-col">
                         <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Press / Industry</h4>
-                        <a href="#" class="inline-block text-xs text-zinc-100 bg-black/40 group-hover:bg-black/70 backdrop-blur-sm hover:text-white border border-zinc-800 hover:border-zinc-500 px-6 py-2 transition-all uppercase tracking-widest">
+                        <a href="Aaron Summerfield EPK.pdf" download="Aaron Summerfield EPK.pdf" class="inline-block text-xs text-zinc-100 bg-black/40 group-hover:bg-black/70 backdrop-blur-sm hover:text-white border border-zinc-800 hover:border-zinc-500 px-6 py-2 transition-all uppercase tracking-widest">
                             Download EPK (PDF)
                         </a>
                     </div>
@@ -1038,20 +1038,19 @@
                     return;
                 }
 
-                // POST to formResponse for auto-submission
-                // Google Form Action URL: /formResponse instead of /viewform
+                // Lead to Google Form with pre-filled email and AUTO-SUBMISSION
+                // By posting to formResponse, we skip the form UI entirely.
                 const formId = "1FAIpQLSepBJfN3LbxFrga4z04Jvkj70g4lqnWXZvgxW2Pczs9LG_BkA";
                 const submitUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
                 
-                // Create a hidden form and submit it via a POST request to trigger automatic submission.
-                // This will open a new tab directly on the 'Response Recorded' page.
+                // Construct a hidden form and submit it via POST
                 const hiddenForm = document.createElement('form');
                 hiddenForm.action = submitUrl;
                 hiddenForm.method = 'POST';
-                hiddenForm.target = '_blank';
+                hiddenForm.target = '_blank'; // Opens the Google "Thank You" page in a new tab
 
                 const hiddenInput = document.createElement('input');
-                hiddenInput.name = 'entry.424566785'; // Verified Entry ID
+                hiddenInput.name = 'entry.424566785'; // Your Entry ID
                 hiddenInput.value = email;
                 hiddenForm.appendChild(hiddenInput);
 
@@ -1062,7 +1061,7 @@
                 newsletterMsg.textContent = "Joining Mailing List...";
                 newsletterMsg.classList.remove('opacity-0');
                 
-                // Clear input and message after a short delay
+                // Clear input after a short delay
                 setTimeout(() => {
                     newsletterEmailInput.value = "";
                     newsletterMsg.classList.add('opacity-0');
@@ -1096,6 +1095,5 @@
     </script>
 </body>
 </html>
-
 
 

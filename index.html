@@ -321,7 +321,7 @@
             100% { filter: drop-shadow(2px 0 #ff0000) drop-shadow(-2px 0 #00ffff) hue-rotate(360deg); opacity: 1; }
         }
 
-        /* Target SVGs because Lucide replaces <i> tags with SVGs */
+        /* Target SVGs because Lucide replaces <i> tags */
         .social-glitch:hover svg, .spotify-glitch:hover svg {
             animation: glitch-shake 0.2s cubic-bezier(.36,.07,.19,.97) both infinite, chromatic-flicker 0.15s steps(2) infinite !important;
             color: white !important;
@@ -678,6 +678,18 @@
                 </div>
 
                 <div class="flex flex-wrap justify-center gap-12 pt-12 relative z-20">
+                    <!-- Spotify Link Added -->
+                    <a href="https://open.spotify.com/artist/64tM7eKzGdIS5PkcNhvhrc?si=wSoaIuTpTFeKnAydswPUvQ" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.508 17.302c-.223.367-.704.484-1.062.261-2.874-1.755-6.491-2.152-10.748-1.178-.418.096-.837-.168-.933-.586-.096-.418.168-.837.586-.933 4.657-1.065 8.647-.618 11.896 1.365.358.223.475.704.261 1.071zm1.47-3.254c-.28.455-.875.597-1.33.317-3.29-2.022-8.31-2.61-12.196-1.43-.513.156-1.05-.145-1.206-.658-.156-.513.145-1.05.658-1.206 4.45-1.35 10-1.13 13.75 1.18.455.28.597.875.324 1.327zm.126-3.385c-3.95-2.346-10.462-2.564-14.25-1.41-.606.184-1.246-.17-1.43-.776-.184-.606.17-1.246.776-1.43 4.36-1.32 11.55-1.06 16.08 1.63.546.324.726 1.03.402 1.576-.324.546-1.03.726-1.576.402z"/></svg>
+                    </a>
+                    <!-- Apple Music Link Added -->
+                    <a href="https://music.apple.com/us/artist/aaron-summerfield/1470816887" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4 11.144c-1.36 1.054-3.18 1.621-4.82 1.621-1.63 0-2.83-.54-2.83-1.61 0-.64.44-1.23 1.25-1.55 1.05-.42 2.76-.64 4.4-.64.12 0 .23 0 .34.01v-.15c0-.64-.47-1.04-1.37-1.04-.76 0-1.52.26-2.12.65-.13.08-.25.13-.34.13-.19 0-.34-.15-.34-.34 0-.12.06-.23.16-.31.81-.66 1.93-1.05 3-1.05 1.7 0 2.65.86 2.65 2.19v2.66c0 .54.19.86.49 1.15.12.11.18.23.18.35 0 .23-.19.42-.42.42-.1 0-.21-.04-.32-.12-.22-.16-.34-.41-.34-.69v-.01c-.56.59-1.37.95-2.28.95-1.33 0-2.4-.85-2.4-2.01 0-1.24 1.16-2.07 2.69-2.07.13 0 .27 0 .4.01v.01zm.34-.65v.01c-.11-.01-.22-.01-.34-.01-1.28 0-2.61.17-3.41.49-.6.23-.93.68-.93 1.14 0 .73.84 1.12 2.05 1.12 1.28 0 2.63-.44 2.63-1.66v-1.1z"/></svg>
+                    </a>
+                    <!-- Bandcamp Link Added -->
+                    <a href="https://aaronsummerfield.bandcamp.com/" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5H0z"/></svg>
+                    </a>
                     <a href="https://www.instagram.com/aaronsummerfield" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full">
                         <i data-lucide="instagram" class="w-6 h-6"></i>
                     </a>
@@ -697,7 +709,7 @@
         <p class="text-[9px] font-bold uppercase tracking-[0.5em]">
             © 2025 Aaron Summerfield
         </p>
-        <!-- Hidden Stats Counter (UX Decision: Hidden to prevent 'empty room' signal) -->
+        <!-- Hidden Stats Counter -->
         <div id="stats-counter" class="mt-4 text-[9px] font-mono select-all transition-all duration-500" style="display: none;">
             <span class="shimmer-text">
                 Views: <span id="view-count">0</span> Total Listens: <span id="listen-count">0</span>
@@ -723,7 +735,6 @@
 
         const initStats = async (user) => {
             if (!user) return;
-            // Listen to stats even if hidden (for future admin use)
             onSnapshot(statsDocRef, (docSnap) => {
                 if (docSnap.exists()) {
                     const data = docSnap.data();

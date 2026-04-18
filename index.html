@@ -491,78 +491,82 @@
             <div class="mb-24">
                 <h2 class="text-amber-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-12 text-center">Upcoming Events</h2>
                 
-                <!-- Unified Poster Design -->
-                <div class="max-w-5xl mx-auto bg-black/70 backdrop-blur-xl border border-white/10 rounded-sm overflow-hidden shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-amber-500/30">
-                    <div class="p-8 md:p-16">
-                        <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
-                            <!-- Show Information -->
-                            <div class="lg:w-1/2 space-y-8">
-                                <div class="space-y-2">
-                                    <div class="flex items-center gap-3">
-                                        <p class="text-amber-500 font-bold text-xs uppercase tracking-widest">Friday, July 10, 2026</p>
-                                        <span class="w-1.5 h-1.5 rounded-full bg-zinc-800"></span>
-                                        <p class="text-zinc-400 font-serif italic text-xs uppercase tracking-tighter">Album Release Show</p>
-                                    </div>
-                                    <h3 class="text-5xl md:text-7xl font-extralight tracking-tighter uppercase italic leading-none text-white">Summer Circle</h3>
-                                </div>
-                                
-                                <div class="grid gap-6 py-8 border-y border-white/5">
-                                    <div class="flex items-start gap-4">
-                                        <i data-lucide="map-pin" class="w-5 h-5 text-amber-500"></i>
-                                        <div>
-                                            <p class="font-bold uppercase tracking-wider text-sm text-zinc-100">Dazzle Denver Arts Complex</p>
-                                            <p class="text-zinc-400 text-sm">1080 14th St, Denver, CO</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start gap-4">
-                                        <i data-lucide="clock" class="w-5 h-5 text-amber-500"></i>
-                                        <p class="text-zinc-300 text-sm uppercase tracking-widest">Doors: 5:30 PM <span class="mx-2 text-zinc-700">/</span> Show: 6:30 PM</p>
-                                    </div>
-                                </div>
+                <!-- Unified Poster Card -->
+                <div class="max-w-4xl mx-auto bg-black/80 backdrop-blur-2xl border border-white/10 rounded-sm overflow-hidden shadow-[0_0_80px_-20px_rgba(245,158,11,0.2)] transition-all duration-500 hover:border-amber-500/40">
+                    <div class="p-10 md:p-16">
+                        <!-- Date & Category -->
+                        <div class="flex items-center justify-center gap-4 mb-8">
+                            <span class="h-px w-8 bg-amber-500/30"></span>
+                            <div class="flex items-center gap-3">
+                                <p class="text-amber-500 font-bold text-[11px] uppercase tracking-[0.3em]">Friday, July 10, 2026</p>
+                                <span class="w-1 h-1 rounded-full bg-zinc-700"></span>
+                                <p class="text-zinc-500 font-serif italic text-xs uppercase tracking-tighter">Album Release Show</p>
+                            </div>
+                            <span class="h-px w-8 bg-amber-500/30"></span>
+                        </div>
 
-                                <a href="https://tickets.venuepilot.com/e/aaron-summerfield-s-summer-circle-2026-07-10-dazzle-the-arts-complex-denver-206711" target="_blank" class="glitch-btn inline-flex items-center justify-center gap-3 bg-white text-black px-12 py-5 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-amber-500 hover:text-white transition-all w-full md:w-auto">
-                                    Purchase Tickets <i data-lucide="external-link" class="w-4 h-4"></i>
-                                </a>
+                        <!-- Main Billboard Text -->
+                        <div class="text-center space-y-6">
+                            <h3 class="text-6xl md:text-8xl font-extralight tracking-tighter uppercase italic leading-none text-white">Summer Circle</h3>
+                            
+                            <!-- Detailed Ensemble Integration -->
+                            <div class="py-10 border-y border-white/5 mt-10">
+                                <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-[0.4em] mb-8">The Ensemble</p>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-4">
+                                    <div class="flex flex-col">
+                                        <span class="text-white text-base font-light tracking-tight">Aaron Summerfield</span>
+                                        <span class="text-[10px] text-amber-500 font-bold uppercase tracking-widest italic opacity-70">Guitar</span>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-white text-base font-light tracking-tight">Tyler Farr</span>
+                                        <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest italic">Saxophone</span>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-white text-base font-light tracking-tight">Wilson Luallen</span>
+                                        <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest italic">Bass</span>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-white text-base font-light tracking-tight">Alex Tripp</span>
+                                        <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest italic">Drums</span>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-white text-base font-light tracking-tight">Lannie Shelton</span>
+                                        <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest italic">Violin</span>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span class="text-white text-base font-light tracking-tight">Kevin Klemm</span>
+                                        <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest italic">Keys</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- Integrated Personnel List -->
-                            <div class="lg:w-1/2 bg-white/[0.02] p-8 md:p-10 rounded-sm border border-white/5">
-                                <h4 class="text-zinc-500 font-bold tracking-[0.3em] uppercase text-[9px] mb-8 flex items-center gap-2">
-                                    <i data-lucide="users" class="w-3 h-3"></i>
-                                    Band Personnel
-                                </h4>
-                                <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-6">
-                                    <li class="flex flex-col border-b border-white/5 pb-2">
-                                        <span class="text-base font-light tracking-tight text-white">Aaron Summerfield</span>
-                                        <span class="text-[9px] font-bold uppercase tracking-widest text-amber-500/70 italic">Guitar</span>
-                                    </li>
-                                    <li class="flex flex-col border-b border-white/5 pb-2">
-                                        <span class="text-base font-light tracking-tight text-white">Tyler Farr</span>
-                                        <span class="text-[9px] font-bold uppercase tracking-widest text-zinc-500 italic">Saxophone</span>
-                                    </li>
-                                    <li class="flex flex-col border-b border-white/5 pb-2">
-                                        <span class="text-base font-light tracking-tight text-white">Wilson Luallen</span>
-                                        <span class="text-[9px] font-bold uppercase tracking-widest text-zinc-500 italic">Bass</span>
-                                    </li>
-                                    <li class="flex flex-col border-b border-white/5 pb-2">
-                                        <span class="text-base font-light tracking-tight text-white">Alex Tripp</span>
-                                        <span class="text-[9px] font-bold uppercase tracking-widest text-zinc-500 italic">Drums</span>
-                                    </li>
-                                    <li class="flex flex-col border-b border-white/5 pb-2">
-                                        <span class="text-base font-light tracking-tight text-white">Lannie Shelton</span>
-                                        <span class="text-[9px] font-bold uppercase tracking-widest text-zinc-500 italic">Violin</span>
-                                    </li>
-                                    <li class="flex flex-col border-b border-white/5 pb-2">
-                                        <span class="text-base font-light tracking-tight text-white">Kevin Klemm</span>
-                                        <span class="text-[9px] font-bold uppercase tracking-widest text-zinc-500 italic">Keys</span>
-                                    </li>
-                                </ul>
+                            <!-- Venue & Logistics -->
+                            <div class="pt-10 grid md:grid-cols-2 gap-8 items-center text-left max-w-2xl mx-auto">
+                                <div class="flex items-start gap-4">
+                                    <i data-lucide="map-pin" class="w-5 h-5 text-amber-500 flex-shrink-0 mt-1"></i>
+                                    <div>
+                                        <p class="font-bold uppercase tracking-wider text-sm text-zinc-100">Dazzle Denver Arts Complex</p>
+                                        <p class="text-zinc-400 text-xs">1080 14th St, Denver, CO</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <i data-lucide="clock" class="w-5 h-5 text-amber-500 flex-shrink-0 mt-1"></i>
+                                    <p class="text-zinc-300 text-sm uppercase tracking-widest">Doors: 5:30 PM <span class="mx-2 text-zinc-700">/</span> Show: 6:30 PM</p>
+                                </div>
+                            </div>
+
+                            <div class="pt-12 flex justify-center">
+                                <a href="https://tickets.venuepilot.com/e/aaron-summerfield-s-summer-circle-2026-07-10-dazzle-the-arts-complex-denver-206711" target="_blank" class="glitch-btn group/btn inline-flex items-center justify-center gap-3 bg-white text-black px-12 py-5 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-amber-500 hover:text-white transition-all w-full md:w-auto">
+                                    Purchase Tickets 
+                                    <i data-lucide="external-link" class="w-4 h-4 opacity-50 group-hover/btn:opacity-100 transition-opacity"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Collaboration & Contact Area -->
             <div class="max-w-2xl mx-auto pt-20 border-t border-white/10">
                 <h2 class="text-4xl md:text-6xl font-extralight tracking-tighter uppercase italic mb-12">Collaborate</h2>
                 <div class="space-y-12">
@@ -578,36 +582,43 @@
                         </div>
                         <div class="text-left space-y-4 md:text-right flex flex-col md:items-end">
                             <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Press / Industry</h4>
-                            <a href="Aaron Summerfield EPK.pdf" download class="glitch-btn inline-flex items-center gap-2 text-xs text-zinc-100 bg-black/40 hover:text-white border border-zinc-800 hover:border-zinc-500 px-6 py-2 transition-all uppercase tracking-widest rounded-sm">
-                                Download EPK (PDF) <i data-lucide="external-link" class="w-3 h-3"></i>
+                            <a href="Aaron Summerfield EPK.pdf" download class="glitch-btn group/epk inline-flex items-center gap-2 text-xs text-zinc-100 bg-black/40 hover:text-white border border-zinc-800 hover:border-zinc-500 px-6 py-2 transition-all uppercase tracking-widest rounded-sm">
+                                Download EPK (PDF) 
+                                <i data-lucide="external-link" class="w-3 h-3 opacity-40 group-hover/epk:opacity-100 transition-opacity"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Restored Social Icons with External Link Glyphs -->
+                    <!-- Social Icons with Direct SVG Paths and External Link Icons -->
                     <div class="flex flex-wrap justify-center gap-4 pt-12">
+                        <!-- Spotify -->
                         <a href="https://open.spotify.com/artist/64tM7eKzGdIS5PkcNhvhrc" target="_blank" class="social-glitch group flex items-center gap-2 text-zinc-400 hover:text-white transition-all bg-black/20 p-3 px-4 rounded-full border border-white/5" title="Spotify">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.508 17.302c-.223.367-.704.484-1.062.261-2.874-1.755-6.491-2.152-10.748-1.178-.418.096-.837-.168-.933-.586-.096-.418.168-.837.586-.933 4.657-1.065 8.647-.618 11.896 1.365.358.223.475.704.261 1.071zm1.47-3.254c-.28.455-.875.597-1.33.317-3.29-2.022-8.31-2.61-12.196-1.43-.513.156-1.05-.145-1.206-.658-.156-.513.145-1.05.658-1.206 4.45-1.35 10-1.13 13.75 1.18.455.28.597.875.324 1.327zm.126-3.385c-3.95-2.346-10.462-2.564-14.25-1.41-.606.184-1.246-.17-1.43-.776-.184-.606.17-1.246.776-1.43 4.36-1.32 11.55-1.06 16.08 1.63.546.324.726 1.03.402 1.576-.324.546-1.03.726-1.576.402z"/></svg>
                             <i data-lucide="external-link" class="w-3 h-3 opacity-30 group-hover:opacity-100 transition-opacity"></i>
                         </a>
+                        <!-- Apple Music -->
                         <a href="https://music.apple.com/us/artist/aaron-summerfield/1470816887" target="_blank" class="social-glitch group flex items-center gap-2 text-zinc-400 hover:text-white transition-all bg-black/20 p-3 px-4 rounded-full border border-white/5" title="Apple Music">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4 11.144c-1.36 1.054-3.18 1.621-4.82 1.621-1.63 0-2.83-.54-2.83-1.61 0-.64.44-1.23 1.25-1.55 1.05-.42 2.76-.64 4.4-.64.12 0 .23 0 .34.01v-.15c0-.64-.47-1.04-1.37-1.04-.76 0-1.52.26-2.12.65-.13.08-.25.13-.34.13-.19 0-.34-.15-.34-.34 0-.12.06-.23.16-.31.81-.66 1.93-1.05 3-1.05 1.7 0 2.65.86 2.65 2.19v2.66c0 .54.19.86.49 1.15.12.11.18.23.18.35 0 .23-.19.42-.42.42-.1 0-.21-.04-.32-.12-.22-.16-.34-.41-.34-.69v-.01c-.56.59-1.37.95-2.28.95-1.33 0-2.4-.85-2.4-2.01 0-1.24 1.16-2.07 2.69-2.07.13 0 .27 0 .4.01v.01zm.34-.65v.01c-.11-.01-.22-.01-.34-.01-1.28 0-2.61.17-3.41.49-.6.23-.93.68-.93 1.14 0 .73.84 1.12 2.05 1.12 1.28 0 2.63-.44 2.63-1.66v-1.1z"/></svg>
                             <i data-lucide="external-link" class="w-3 h-3 opacity-30 group-hover:opacity-100 transition-opacity"></i>
                         </a>
+                        <!-- Bandcamp -->
                         <a href="https://aaronsummerfield.bandcamp.com/" target="_blank" class="social-glitch group flex items-center gap-2 text-zinc-400 hover:text-white transition-all bg-black/20 p-3 px-4 rounded-full border border-white/5" title="Bandcamp">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5H0z"/></svg>
                             <i data-lucide="external-link" class="w-3 h-3 opacity-30 group-hover:opacity-100 transition-opacity"></i>
                         </a>
+                        <!-- YouTube -->
                         <a href="https://www.youtube.com/channel/UCTjdySQa56Ri16UY-7RZnZA" target="_blank" class="social-glitch group flex items-center gap-2 text-zinc-400 hover:text-white transition-all bg-black/20 p-3 px-4 rounded-full border border-white/5" title="YouTube">
-                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                             <i data-lucide="external-link" class="w-3 h-3 opacity-30 group-hover:opacity-100 transition-opacity"></i>
                         </a>
+                        <!-- Instagram -->
                         <a href="https://www.instagram.com/aaronsummerfield" target="_blank" class="social-glitch group flex items-center gap-2 text-zinc-400 hover:text-white transition-all bg-black/20 p-3 px-4 rounded-full border border-white/5" title="Instagram">
-                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                             <i data-lucide="external-link" class="w-3 h-3 opacity-30 group-hover:opacity-100 transition-opacity"></i>
                         </a>
+                        <!-- Facebook -->
                         <a href="https://www.facebook.com/AaronSummerfieldMusic/" target="_blank" class="social-glitch group flex items-center gap-2 text-zinc-400 hover:text-white transition-all bg-black/20 p-3 px-4 rounded-full border border-white/5" title="Facebook">
-                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
                             <i data-lucide="external-link" class="w-3 h-3 opacity-30 group-hover:opacity-100 transition-opacity"></i>
                         </a>
                     </div>
@@ -621,7 +632,7 @@
         <p class="text-[9px] font-bold uppercase tracking-[0.5em]">© 2025 Aaron Summerfield</p>
     </footer>
 
-    <!-- Firebase -->
+    <!-- Firebase Script -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";

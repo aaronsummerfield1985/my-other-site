@@ -188,7 +188,7 @@
             30% { transform: translate(-2px, 2px); }
             40% { transform: translate(2px, -2px); }
             50% { transform: translate(-1px, 2px); }
-            60% { transform: translate(-1px, 1px); }
+            60% { transform: translate(2px, -1px); }
             70% { transform: translate(2px, 1px); }
             80% { transform: translate(-1px, -1px); }
             90% { transform: translate(2px, -1px); }
@@ -268,7 +268,8 @@
                 <a href="#visuals" class="hover-swell text-[10px] font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-[0.2em]">Visuals</a>
                 <a href="#discography" class="hover-swell text-[10px] font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-[0.2em]">Discography</a>
                 <a href="#about" class="hover-swell text-[10px] font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-[0.2em]">About</a>
-                <a href="#contact" class="hover-swell text-[10px] font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-[0.2em]">Contact</a>
+                <a href="#live-events" class="hover-swell text-[10px] font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-[0.2em]">Live</a>
+                <a href="#collaborate" class="hover-swell text-[10px] font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-[0.2em]">Contact</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-slate-100">
                 <i data-lucide="menu"></i>
@@ -280,7 +281,8 @@
             <a href="#visuals" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Visuals</a>
             <a href="#discography" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Discography</a>
             <a href="#about" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">About</a>
-            <a href="#contact" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Contact</a>
+            <a href="#live-events" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Live</a>
+            <a href="#collaborate" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Contact</a>
         </div>
     </nav>
 
@@ -341,7 +343,7 @@
             <div class="grid lg:grid-cols-5 gap-16 items-start">
                 <div class="lg:col-span-2">
                     <h2 class="text-amber-500 font-bold tracking-[0.3em] uppercase text-[10px]">Listen Now</h2>
-                    <p class="mt-6 text-zinc-500 font-serif italic text-lg leading-relaxed max-w-sm">Explore studio recordings and early masters.</p>
+                    <p class="mt-6 text-zinc-500 font-serif italic text-lg leading-relaxed max-sm">Explore studio recordings and early masters.</p>
                 </div>
                 <div class="lg:col-span-3">
                     <div class="p-8 bg-zinc-900/50 border border-white/5 rounded-sm shadow-2xl space-y-8">
@@ -488,7 +490,7 @@
         </div>
 
         <div class="relative z-10 max-w-6xl mx-auto">
-            <div class="mb-24">
+            <div id="live-events" class="mb-24">
                 <h2 class="text-amber-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-12 text-center">Upcoming Events</h2>
                 
                 <!-- Unified Poster Card -->
@@ -515,7 +517,7 @@
                                 <div class="grid grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-4">
                                     <div class="flex flex-col">
                                         <span class="text-white text-base font-light tracking-tight">Aaron Summerfield</span>
-                                        <span class="text-[10px] text-amber-500 font-bold uppercase tracking-widest italic opacity-70">Guitar</span>
+                                        <span class="text-[10px] text-amber-500 font-bold uppercase tracking-widest italic opacity-70">Guitar/Composition</span>
                                     </div>
                                     <div class="flex flex-col">
                                         <span class="text-white text-base font-light tracking-tight">Tyler Farr</span>
@@ -567,7 +569,7 @@
             </div>
 
             <!-- Collaboration & Contact Area -->
-            <div class="max-w-2xl mx-auto pt-20 border-t border-white/10">
+            <div id="collaborate" class="max-w-2xl mx-auto pt-20 border-t border-white/10">
                 <h2 class="text-4xl md:text-6xl font-extralight tracking-tighter uppercase italic mb-12">Collaborate</h2>
                 <div class="space-y-12">
                     <a id="contact-email" href="mailto:info@aaronsummerfield.com" class="block text-2xl md:text-3xl font-light hover:text-amber-500 transition-colors py-4 border-b border-white/10 relative z-20">info@aaronsummerfield.com</a>
@@ -589,8 +591,13 @@
                         </div>
                     </div>
 
-                    <!-- Social Icons with Direct SVG Paths and External Link Icons -->
+                    <!-- Social Icons -->
                     <div class="flex flex-wrap justify-center gap-4 pt-12">
+                        <!-- All About Jazz Profile -->
+                        <a href="https://www.allaboutjazz.com/musicians/aaron-summerfield" target="_blank" class="social-glitch group flex items-center gap-2 text-zinc-400 hover:text-white transition-all bg-black/20 p-3 px-4 rounded-full border border-white/5" title="All About Jazz">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                            <i data-lucide="external-link" class="w-3 h-3 opacity-30 group-hover:opacity-100 transition-opacity"></i>
+                        </a>
                         <!-- Spotify -->
                         <a href="https://open.spotify.com/artist/64tM7eKzGdIS5PkcNhvhrc" target="_blank" class="social-glitch group flex items-center gap-2 text-zinc-400 hover:text-white transition-all bg-black/20 p-3 px-4 rounded-full border border-white/5" title="Spotify">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.508 17.302c-.223.367-.704.484-1.062.261-2.874-1.755-6.491-2.152-10.748-1.178-.418.096-.837-.168-.933-.586-.096-.418.168-.837.586-.933 4.657-1.065 8.647-.618 11.896 1.365.358.223.475.704.261 1.071zm1.47-3.254c-.28.455-.875.597-1.33.317-3.29-2.022-8.31-2.61-12.196-1.43-.513.156-1.05-.145-1.206-.658-.156-.513.145-1.05.658-1.206 4.45-1.35 10-1.13 13.75 1.18.455.28.597.875.324 1.327zm.126-3.385c-3.95-2.346-10.462-2.564-14.25-1.41-.606.184-1.246-.17-1.43-.776-.184-.606.17-1.246.776-1.43 4.36-1.32 11.55-1.06 16.08 1.63.546.324.726 1.03.402 1.576-.324.546-1.03.726-1.576.402z"/></svg>

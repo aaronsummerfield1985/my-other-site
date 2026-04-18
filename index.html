@@ -57,18 +57,13 @@
         .tracking-widest-extra {
             letter-spacing: 0.5em;
         }
-        /* Smooth transitions for images */
         img {
             transition: opacity 1s ease-in-out;
         }
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #000;
-        }
-        ::-webkit-scrollbar-bottom-track {
             background: #000;
         }
         ::-webkit-scrollbar-thumb {
@@ -78,8 +73,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #f59e0b;
         }
-
-        /* Custom Audio Player Styling */
+        
         audio::-webkit-media-controls-panel {
             background-color: #18181b;
         }
@@ -93,7 +87,6 @@
             color: #e2e8f0;
         }
         
-        /* Playlist Item Transitions */
         .playlist-item {
             transition: all 0.3s ease;
         }
@@ -102,12 +95,10 @@
             background-color: rgba(245, 158, 11, 0.05);
         }
 
-        /* Artwork Transition */
         #track-artwork {
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, filter 0.6s ease;
         }
 
-        /* Shimmer Effect for Hidden Stats */
         .shimmer-text {
             color: #000;
             background: black;
@@ -115,50 +106,29 @@
             transition: background 0.5s ease;
             display: inline-block;
         }
-        
         .shimmer-text:hover {
-            background: linear-gradient(
-                to right, 
-                #000 20%, 
-                #222 40%, 
-                #666 50%, 
-                #222 60%, 
-                #000 80%
-            );
+            background: linear-gradient(to right, #000 20%, #222 40%, #666 50%, #222 60%, #000 80%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer-animation 2s linear infinite;
         }
-
         @keyframes shimmer-animation {
-            to {
-                background-position: 200% center;
-            }
+            to { background-position: 200% center; }
         }
 
-        /* Selection styling to ensure visibility when highlighted */
-        #stats-counter::selection, #stats-counter *::selection {
-            background: rgba(245, 158, 11, 0.3);
-            color: #fff;
-            -webkit-text-fill-color: #fff;
-        }
-
-        /* Hover Interaction Animation for Nav (Updated to Glitch Style) */
         .hover-swell {
             display: inline-block;
             position: relative;
             z-index: 10;
             transition: color 0.1s ease;
         }
-
         .hover-swell:hover {
-            color: #f59e0b; /* Amber */
+            color: #f59e0b;
             text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,255,255,0.5);
             animation: glitch-shake 0.3s cubic-bezier(.36,.07,.19,.97) both infinite;
         }
 
-        /* Dramatic Summer Circle Header Pulse & Shimmer */
         .header-shimmer {
             display: inline-block;
             position: relative;
@@ -167,67 +137,37 @@
             -webkit-background-clip: text;
             background-clip: text;
         }
-        
         .header-shimmer:hover {
-            /* Pulse animation on hover */
             animation: headerPulse 3s infinite ease-in-out, static-noise-bg 0.2s steps(5) infinite;
-            
-            /* TV Static Texture + White Gradient Base */
             background-image: 
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E"),
                 linear-gradient(to bottom, #ffffff 0%, #cbd5e1 100%);
-            
             background-size: 120px 120px, 100% 100%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            
-            /* RGB Split (Chromatic Aberration) */
             text-shadow: 2px 0px 1px rgba(255,0,0,0.3), -2px 0px 1px rgba(0,255,255,0.3);
         }
-
-        /* Background glow for the header */
-        .header-shimmer::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 140%;
-            height: 140%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 1.2s ease;
-            opacity: 0;
-            z-index: -1;
-            pointer-events: none;
-            filter: blur(25px);
-        }
-
-        .header-shimmer:hover::after {
-            transform: translate(-50%, -50%) scale(1.9);
-            opacity: 1;
-        }
-
         @keyframes headerPulse {
             0%, 100% { transform: scale(1); filter: brightness(1); }
             50% { transform: scale(0.94); filter: brightness(1.6); }
         }
 
-        /* Scramble Quote Styling */
-        #scramble-quote {
-            transition: all 0.5s ease;
-            min-height: 3rem; /* Prevents layout shift */
+        .glitch-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.1s;
         }
-        
-        .shimmer-reveal {
-            background-image: linear-gradient(to right, #94a3b8 0%, #ffffff 50%, #94a3b8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer-animation 2s linear infinite;
+        .glitch-btn:hover {
+            background-color: #f59e0b;
+            color: white;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+            background-blend-mode: soft-light;
+            animation: glitch-shake 0.3s cubic-bezier(.36,.07,.19,.97) both infinite, static-noise-bg 0.5s steps(10) infinite;
+            box-shadow: 3px 3px 0px rgba(255, 255, 255, 0.2), -3px -3px 0px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,255,255,0.5);
         }
 
-        /* Glitch/Static Effect for Button */
         @keyframes glitch-shake {
             0% { transform: translate(0, 0); }
             10% { transform: translate(-2px, -2px); }
@@ -244,91 +184,14 @@
 
         @keyframes static-noise-bg {
             0% { background-position: 0 0; }
-            10% { background-position: -10px -10px; }
-            20% { background-position: -20px 5px; }
-            30% { background-position: 7px -25px; }
-            40% { background-position: 20px 25px; }
             50% { background-position: -25px 10px; }
-            60% { background-position: 15px 5px; }
-            70% { background-position: 0px 15px; }
-            80% { background-position: 25px 35px; }
-            90% { background-position: -10px 10px; }
+            100% { background-position: -10px 10px; }
         }
 
-        .glitch-btn {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.1s;
-        }
-
-        .glitch-btn:hover {
-            /* Amber base with static noise overlay */
-            background-color: #f59e0b;
-            color: white;
-            /* SVG Noise Filter */
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
-            background-blend-mode: soft-light;
-            animation: glitch-shake 0.3s cubic-bezier(.36,.07,.19,.97) both infinite, static-noise-bg 0.5s steps(10) infinite;
-            box-shadow: 3px 3px 0px rgba(255, 255, 255, 0.2), -3px -3px 0px rgba(0, 0, 0, 0.5);
-            text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,255,255,0.5);
-        }
-
-        /* Glitch Pan & Scan Animation for Backgrounds */
-        @keyframes glitch-pan-scan {
-            0% { transform: scale(1.0) translate(0, 0); filter: grayscale(100%) brightness(0.5); }
-            10% { transform: scale(1.05) translate(-1%, -1%); }
-            20% { transform: scale(1.05) translate(1%, 1%); }
-            /* Sharp Glitch Jitter */
-            21% { transform: scale(1.1) translate(-2%, 2%); filter: grayscale(0%) contrast(1.5) hue-rotate(90deg); opacity: 0.6; }
-            22% { transform: scale(1.05) translate(1%, 1%); filter: grayscale(100%) brightness(0.5); opacity: 0.3; }
-            
-            40% { transform: scale(1.05) translate(-2%, 0); }
-            60% { transform: scale(1.1) translate(2%, -2%); }
-            /* Invert Flash */
-            61% { transform: scale(1.15) translate(-5px, 5px); filter: invert(1); opacity: 0.4; }
-            62% { transform: scale(1.1) translate(2%, -2%); filter: grayscale(100%) brightness(0.5); opacity: 0.3; }
-            
-            80% { transform: scale(1.05) translate(0, 2%); }
-            90% { transform: scale(1.02) translate(-1%, -1%); filter: grayscale(100%) brightness(0.6); }
-            100% { transform: scale(1.0) translate(0, 0); filter: grayscale(100%) brightness(0.5); }
-        }
-
-        /* Apply animation on hover of the hero container */
-        #hero-section:hover #hero-bg-img {
-            animation: glitch-pan-scan 6s infinite linear;
-            transition: none;
-            opacity: 0.4;
-        }
-
-        /* Apply animation on hover of the contact container */
-        #contact:hover #contact-bg-img {
-            animation: glitch-pan-scan 8s infinite linear;
-            transition: none;
-        }
-
-        /* Email Glitch Styles */
-        .email-glitch-active {
-            animation: glitch-shake 0.3s cubic-bezier(.36,.07,.19,.97) both infinite;
-            text-shadow: 2px 0 rgba(255,0,0,0.5), -2px 0 rgba(0,255,255,0.5);
-        }
-
-        /* Social/Spotify Aggressive Glitch Effect */
-        @keyframes chromatic-flicker {
-            0% { filter: drop-shadow(2px 0 #ff0000) drop-shadow(-2px 0 #00ffff) hue-rotate(0deg); opacity: 1; }
-            25% { filter: drop-shadow(-1px 2px #ff0000) drop-shadow(1px -2px #00ffff) hue-rotate(90deg); opacity: 0.8; }
-            50% { filter: drop-shadow(3px -1px #ff0000) drop-shadow(-3px 1px #00ffff) hue-rotate(180deg); opacity: 1; }
-            75% { filter: drop-shadow(-2px -2px #ff0000) drop-shadow(2px 2px #00ffff) hue-rotate(270deg); opacity: 0.9; }
-            100% { filter: drop-shadow(2px 0 #ff0000) drop-shadow(-2px 0 #00ffff) hue-rotate(360deg); opacity: 1; }
-        }
-
-        /* Target SVGs because Lucide replaces <i> tags */
-        .social-glitch:hover svg, .spotify-glitch:hover svg {
-            animation: glitch-shake 0.2s cubic-bezier(.36,.07,.19,.97) both infinite, chromatic-flicker 0.15s steps(2) infinite !important;
+        .social-glitch:hover svg {
+            animation: glitch-shake 0.2s cubic-bezier(.36,.07,.19,.97) both infinite;
             color: white !important;
-            fill: white !important;
-            display: inline-block;
         }
-
     </style>
 </head>
 <body class="antialiased selection:bg-amber-500/30">
@@ -337,9 +200,7 @@
     <nav id="navbar" class="fixed w-full z-[100] transition-all duration-500 py-8">
         <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex justify-between items-center">
             <div class="text-xl font-bold uppercase">
-                <a href="https://youtu.be/w0xrskcVaqg" target="_blank" class="hover-swell tracking-[0.3em]">
-                    Aaron Summerfield
-                </a>
+                <a href="#" class="hover-swell tracking-[0.3em]">Aaron Summerfield</a>
             </div>
 
             <div class="hidden md:flex items-center gap-10">
@@ -356,7 +217,6 @@
             </button>
         </div>
 
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-white/5 p-8 flex flex-col gap-6 text-center">
             <a href="#featured" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Summer Circle</a>
             <a href="#sound" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-300">Sound</a>
@@ -370,45 +230,29 @@
     <!-- Hero Section -->
     <header id="hero-section" class="relative h-screen flex items-center justify-center px-6 text-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <!-- Mood Image -->
-            <img 
-                id="hero-bg-img"
-                src="Summer Circle cover design 8.jpg" 
-                alt="Atmosphere" 
-                class="w-full h-full object-cover opacity-30 grayscale brightness-50"
-            >
+            <img id="hero-bg-img" src="Summer Circle cover design 8.jpg" alt="Atmosphere" class="w-full h-full object-cover opacity-30 grayscale brightness-50">
             <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
         </div>
         
-        <div class="z-10 max-w-5xl pointer-events-none"> <!-- Added pointer-events-none to container so hover hits header easily -->
-            <!-- Consolidated Release Promise -->
-            <span class="inline-block text-amber-500 font-bold tracking-widest-extra uppercase text-[10px] mb-6 opacity-80 pointer-events-auto"> <!-- Re-enable pointer events for interactive elements -->
+        <div class="z-10 max-w-5xl">
+            <span class="inline-block text-amber-500 font-bold tracking-widest-extra uppercase text-[10px] mb-6 opacity-80">
                 Summer Circle — Releasing 2026
             </span>
-            <div class="relative inline-block mb-8 pointer-events-auto">
+            <div class="relative inline-block mb-8">
                 <h1 id="hero-title" class="header-shimmer text-7xl md:text-[10rem] font-light tracking-tighter leading-none">
                     Summer <span class="italic font-serif">Circle</span>
                 </h1>
             </div>
-            <p id="scramble-quote" class="text-xl md:text-2xl text-slate-400 font-serif italic mb-10 max-w-3xl mx-auto leading-relaxed opacity-70 pointer-events-auto">
+            <p id="scramble-quote" class="text-xl md:text-2xl text-slate-400 font-serif italic mb-10 max-w-3xl mx-auto leading-relaxed opacity-70">
                 "Capturing the feeling of a season returning, yet always appearing new."
             </p>
             
-            <!-- Primary CTA: Unavoidable -->
-            <div class="flex flex-col items-center gap-8 pointer-events-auto">
+            <div class="flex flex-col items-center gap-8">
                 <a href="#visuals" onclick="playPerformance()" class="glitch-btn inline-flex items-center gap-3 px-8 py-4 bg-zinc-100 hover:bg-amber-500 text-black hover:text-white font-bold uppercase tracking-[0.2em] text-xs rounded-sm">
                     <i data-lucide="video" class="w-4 h-4"></i>
                     Watch Performance
                 </a>
-                
-                <a href="#featured" class="group flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:text-amber-400 transition-all text-zinc-500">
-                    The Narrative <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
-                </a>
             </div>
-        </div>
-
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none">
-            <div class="w-px h-16 bg-gradient-to-b from-white to-transparent"></div>
         </div>
     </header>
 
@@ -416,37 +260,20 @@
     <section id="featured" class="py-32 px-6 md:px-12">
         <div class="max-w-screen-2xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-24 items-center">
-                
-                <!-- Visual Column -->
                 <div class="relative group order-2 lg:order-1">
-                    <div class="absolute -inset-4 bg-amber-500/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                     <div class="relative aspect-square overflow-hidden bg-zinc-950 rounded-sm shadow-2xl">
-                        <img 
-                            src="Summer Circle cover design 8.jpg" 
-                            alt="Summer Circle Artwork" 
-                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                        >
+                        <img src="Summer Circle cover design 8.jpg" alt="Summer Circle Artwork" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
                     </div>
                 </div>
-
-                <!-- Content Column -->
                 <div class="space-y-12 order-1 lg:order-2">
                     <div class="space-y-4">
                         <h2 class="text-amber-500 font-bold tracking-[0.3em] uppercase text-[10px]">Featured Release</h2>
                         <h3 class="text-6xl font-extralight tracking-tighter uppercase italic leading-none">Summer Circle</h3>
                     </div>
-                    
                     <div class="space-y-6 text-slate-400 font-serif text-lg leading-relaxed">
-                        <p>
-                            With <span class="text-slate-100 italic">Summer Circle</span>, guitarist and composer Aaron Summerfield presents a suite of works that balance improvisational depth with a compelling melodic accessibility.
-                        </p>
-                        <p>
-                            Recorded in an intimate setting that prioritizes natural resonance, the album serves as a meditation on cyclical time and the rituals of seasonal change.
-                        </p>
-                        <!-- Consistent Release Promise -->
-                        <p class="text-amber-500/80 tracking-widest uppercase text-xs font-bold">
-                            Summer Circle — Releasing 2026
-                        </p>
+                        <p>With <span class="text-slate-100 italic">Summer Circle</span>, guitarist and composer Aaron Summerfield presents a suite of works that balance improvisational depth with a compelling melodic accessibility.</p>
+                        <p>Recorded in an intimate setting that prioritizes natural resonance, the album serves as a meditation on cyclical time and the rituals of seasonal change.</p>
+                        <p class="text-amber-500/80 tracking-widest uppercase text-xs font-bold">Summer Circle — Releasing 2026</p>
                     </div>
                 </div>
             </div>
@@ -459,19 +286,14 @@
             <div class="grid lg:grid-cols-5 gap-16 items-start">
                 <div class="lg:col-span-2">
                     <h2 class="text-amber-500 font-bold tracking-[0.3em] uppercase text-[10px]">Listen Now</h2>
-                    <p class="mt-6 text-zinc-500 font-serif italic text-lg leading-relaxed max-w-sm">
-                        Explore studio recordings and early masters.
-                    </p>
+                    <p class="mt-6 text-zinc-500 font-serif italic text-lg leading-relaxed max-w-sm">Explore studio recordings and early masters.</p>
                 </div>
                 <div class="lg:col-span-3">
                     <div class="p-8 bg-zinc-900/50 border border-white/5 rounded-sm shadow-2xl space-y-8">
-                        
-                        <!-- Integrated Image Feature -->
                         <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
                             <div class="w-full md:w-48 aspect-square overflow-hidden bg-black border border-white/10 rounded-sm flex-shrink-0">
                                 <img id="track-artwork" src="Integrated Counterpoint alt 3.jpg" alt="Track Artwork" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer">
                             </div>
-                            
                             <div class="flex-grow w-full space-y-8">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-6">
@@ -484,78 +306,17 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-4">
-                                        <button onclick="prevTrack()" class="p-2 text-zinc-500 hover:text-amber-500 transition-colors" title="Previous Track">
-                                            <i data-lucide="skip-back" class="w-5 h-5"></i>
-                                        </button>
-                                        <button onclick="nextTrack()" class="p-2 text-zinc-500 hover:text-amber-500 transition-colors" title="Next Track">
-                                            <i data-lucide="skip-forward" class="w-5 h-5"></i>
-                                        </button>
+                                        <button onclick="prevTrack()" class="p-2 text-zinc-500 hover:text-amber-500 transition-colors"><i data-lucide="skip-back" class="w-5 h-5"></i></button>
+                                        <button onclick="nextTrack()" class="p-2 text-zinc-500 hover:text-amber-500 transition-colors"><i data-lucide="skip-forward" class="w-5 h-5"></i></button>
                                     </div>
                                 </div>
-
                                 <audio id="main-audio-player" controls class="w-full">
                                     <source id="audio-source" src="IntegratedCounterpoint1master.m4a" type="audio/mp4">
-                                    Your browser does not support the audio element.
                                 </audio>
-
-                                <!-- Spotify Integration -->
-                                <div class="flex justify-end pt-2">
-                                    <a href="https://open.spotify.com/artist/64tM7eKzGdIS5PkcNhvhrc?si=wSoaIuTpTFeKnAydswPUvQ" target="_blank" rel="noopener noreferrer" class="spotify-glitch group flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500 hover:text-[#1DB954] transition-all duration-300">
-                                        <span class="opacity-0 group-hover:opacity-100 transition-opacity translate-x-2 group-hover:translate-x-0 duration-500">Hear more on Spotify</span>
-                                        <div class="transition-transform group-hover:scale-110">
-                                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.508 17.302c-.223.367-.704.484-1.062.261-2.874-1.755-6.491-2.152-10.748-1.178-.418.096-.837-.168-.933-.586-.096-.418.168-.837.586-.933 4.657-1.065 8.647-.618 11.896 1.365.358.223.475.704.261 1.071zm1.47-3.254c-.28.455-.875.597-1.33.317-3.29-2.022-8.31-2.61-12.196-1.43-.513.156-1.05-.145-1.206-.658-.156-.513.145-1.05.658-1.206 4.45-1.35 10-1.13 13.75 1.18.455.28.597.875.324 1.327zm.126-3.385c-3.95-2.346-10.462-2.564-14.25-1.41-.606.184-1.246-.17-1.43-.776-.184-.606.17-1.246.776-1.43 4.36-1.32 11.55-1.06 16.08 1.63.546.324.726 1.03.402 1.576-.324.546-1.03.726-1.576.402z"/></svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="pt-6 border-t border-white/5">
-                            <button onclick="toggleTracklist()" class="flex items-center justify-between w-full group">
-                                <h4 class="text-[10px] font-bold text-zinc-600 uppercase tracking-widest group-hover:text-amber-500 transition-colors">Select Track</h4>
-                                <i data-lucide="chevron-down" id="tracklist-chevron" class="w-4 h-4 text-zinc-600 group-hover:text-amber-500 transition-all duration-300 rotate-0"></i>
-                            </button>
-                            
-                            <div id="tracklist-container" class="space-y-2 overflow-hidden transition-all duration-300 max-h-0 opacity-0 pointer-events-none">
-                                <button data-track-index="0" onclick="selectTrack(0, this)" class="playlist-item active w-full text-left p-4 border border-white/5 hover:border-amber-500/50 rounded flex justify-between items-center group">
-                                    <span class="text-xs uppercase tracking-wider text-zinc-300 group-hover:text-white font-bold">Integrated Counterpoint One</span>
-                                    <span class="text-[10px] font-mono text-zinc-600 group-hover:text-amber-500">Track 01</span>
-                                </button>
-                                <button data-track-index="1" onclick="selectTrack(1, this)" class="playlist-item w-full text-left p-4 border border-white/5 hover:border-amber-500/50 rounded flex justify-between items-center group">
-                                    <span class="text-xs uppercase tracking-wider text-zinc-300 group-hover:text-white font-bold">General Interest Meeting</span>
-                                    <span class="text-[10px] font-mono text-zinc-600 group-hover:text-amber-500">Track 02</span>
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Visuals Section -->
-    <section id="visuals" class="py-32 px-6 md:px-12 border-t border-white/5">
-        <div class="max-w-screen-2xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
-                <div class="max-w-2xl">
-                    <h2 class="text-amber-500 font-bold tracking-[0.3em] uppercase text-[10px] mb-4">Performance</h2>
-                    <h3 class="text-4xl md:text-6xl font-extralight tracking-tighter uppercase italic leading-none">Visual Narrative</h3>
-                </div>
-                <div class="text-slate-400 font-serif italic max-w-sm text-right hidden md:block opacity-60">
-                    "A study in resonance and spatial improvisation."
-                </div>
-            </div>
-
-            <div class="relative aspect-video w-full max-w-5xl mx-auto bg-zinc-950 rounded-sm overflow-hidden shadow-2xl border border-white/5">
-                <iframe 
-                    id="performance-video"
-                    class="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700 opacity-80 hover:opacity-100" 
-                    src="https://www.youtube.com/embed/w0xrskcVaqg?rel=0&modestbranding=1&enablejsapi=1" 
-                    title="Aaron Summerfield Performance" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
             </div>
         </div>
     </section>
@@ -567,224 +328,110 @@
                 <h2 class="text-3xl font-light tracking-tighter uppercase">Selected Works</h2>
                 <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">2021 — 2026</div>
             </div>
-
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-                <a href="https://open.spotify.com/album/4FDxdNHru6si81XznGxdAB?si=oxK7L85CTHSfF4Wz22tfRQ" target="_blank" rel="noopener noreferrer" class="group block">
-                    <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
+                <a href="https://open.spotify.com/album/4FDxdNHru6si81XznGxdAB?si=oxK7L85CTHSfF4Wz22tfRQ" target="_blank" class="group block">
+                    <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 grayscale group-hover:grayscale-0 transition-all duration-500">
                         <img src="Peaks and Playgrounds.webp" alt="Peaks and Playgrounds" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
                     </div>
                     <h4 class="text-lg font-medium tracking-tight mb-1 group-hover:text-amber-500 transition-colors uppercase">Peaks and Playgrounds</h4>
                     <p class="text-xs text-zinc-500 italic font-serif">Tyler Farr Quartet</p>
                 </a>
-
-                <a href="https://theorchidroom.bandcamp.com/album/places" target="_blank" rel="noopener noreferrer" class="group block">
-                    <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
+                <a href="https://theorchidroom.bandcamp.com/album/places" target="_blank" class="group block">
+                    <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 grayscale group-hover:grayscale-0 transition-all duration-500">
                         <img src="place cover.jpg" alt="Places" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
                     </div>
                     <h4 class="text-lg font-medium tracking-tight mb-1 group-hover:text-amber-500 transition-colors uppercase">Places</h4>
                     <p class="text-xs text-zinc-500 italic font-serif">The Orchid Room</p>
                 </a>
-
-                <a href="https://open.spotify.com/album/7vDgTanPnjMvpkz61FsaLF?si=jXzbyWTRSNyezeECGH_ozQ" target="_blank" rel="noopener noreferrer" class="group block">
-                    <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <img src="Summer Circle Summoning cover design 4.jpg" alt="Summer Circle/Summoning EP" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
-                    </div>
-                    <h4 class="text-lg font-bold tracking-tight mb-1 group-hover:text-amber-500 transition-colors uppercase">Summer Circle/Summoning EP</h4>
-                    <p class="text-xs text-zinc-500 italic font-serif">Aaron Summerfield</p>
-                </a>
-
-                <a href="https://open.spotify.com/album/4NBDnnp1eim3lc9hcLIfIJ?si=c5ZlLBEGRD25y4TCiUY03Q" target="_blank" rel="noopener noreferrer" class="group block">
-                    <div class="aspect-square bg-zinc-900 mb-6 overflow-hidden relative border border-white/5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <img src="everyone everywhere.avif" alt="Everyone Everywhere" class="w-full h-full object-cover opacity-50 group-hover:opacity-100">
-                    </div>
-                    <h4 class="text-lg font-medium tracking-tight mb-1 group-hover:text-amber-500 transition-colors uppercase">Everyone Everywhere</h4>
-                    <p class="text-xs text-zinc-500 italic font-serif">Big Brooklyn</p>
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- Background/About -->
+    <!-- About Section -->
     <section id="about" class="py-32 px-6 md:px-12">
         <div class="max-w-4xl mx-auto">
             <div class="grid md:grid-cols-5 gap-16">
                 <div class="md:col-span-3">
                     <h3 class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-500 mb-8">Studio & Academic Background</h3>
-                    <p class="text-slate-400 font-serif italic text-xl leading-relaxed mb-8">
-                        Based in Denver, Aaron balances a performance practice with instructional leadership at the Community College of Aurora, specializing in music technology and jazz studies.
-                    </p>
-                    <!-- Improved Credential Formatting -->
-                    <div class="flex flex-col gap-2 border-l-2 border-zinc-800 pl-4">
-                        <span class="text-xs font-bold uppercase tracking-widest text-zinc-300">M.M. — Jazz Performance</span>
-                        <span class="text-[10px] uppercase tracking-wider text-zinc-500">(Recording Arts, Music Business)</span>
-                    </div>
-                </div>
-                <div class="md:col-span-2 space-y-10 border-l border-white/5 pl-8 md:pl-16">
-                    <div class="space-y-4">
-                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Selected Honors</h4>
-                        <ul class="space-y-2 text-sm text-zinc-400 font-light">
-                            <li>Westword Music Awards Finalist</li>
-                            <li>John Lennon Songwriting Finalist</li>
-                        </ul>
-                    </div>
+                    <p class="text-slate-400 font-serif italic text-xl leading-relaxed mb-8">Based in Denver, Aaron balances a performance practice with instructional leadership at the Community College of Aurora.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact & Next Performance -->
     <section id="contact" class="group relative py-40 px-6 bg-zinc-950/20 border-t border-white/5 overflow-hidden">
-        <!-- Background Underlay Image with Glitch Effect -->
         <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-            <img 
-                id="contact-bg-img"
-                src="Headshot 1.jpg" 
-                alt="Aaron Summerfield Portrait" 
-                class="w-full h-full object-cover opacity-20 group-hover:opacity-60 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-100 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-1000 ease-in-out transform scale-100 group-hover:scale-105"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black transition-opacity duration-1000 group-hover:opacity-40"></div>
+            <img id="contact-bg-img" src="Headshot 1.jpg" alt="Aaron Summerfield Portrait" class="w-full h-full object-cover opacity-20 grayscale group-hover:opacity-60 transition-all duration-1000 ease-in-out transform scale-100 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto text-center">
-            <h2 class="text-5xl md:text-8xl font-extralight tracking-tighter uppercase italic mb-12 transition-all duration-700 group-hover:text-amber-500 group-hover:translate-y-[-4px]">Collaborate</h2>
+            <h2 class="text-5xl md:text-8xl font-extralight tracking-tighter uppercase italic mb-12 transition-all duration-700 group-hover:text-amber-500">Collaborate</h2>
             
-            <div class="space-y-12">
-                <!-- Contact Links -->
+            <div class="space-y-16">
+                <!-- NEXT PERFORMANCE SECTION -->
+                <div class="bg-black/60 backdrop-blur-md border border-white/5 p-8 md:p-12 rounded-sm max-w-2xl mx-auto transform transition-transform group-hover:translate-y-[-10px] duration-700">
+                    <h4 class="text-amber-500 font-bold uppercase tracking-[0.4em] text-[10px] mb-6">Next Performance</h4>
+                    <div class="space-y-2 mb-8 text-center">
+                        <span class="block text-2xl md:text-3xl font-light uppercase tracking-tight">Summer Circle Album Release Show</span>
+                        <span class="block text-zinc-400 font-serif italic">Friday, July 10th @ 6:30 PM</span>
+                        <span class="block text-zinc-500 text-[10px] uppercase tracking-widest mb-2">(Doors at 5:30 PM)</span>
+                        <span class="block text-amber-500 text-xs font-bold uppercase tracking-widest mt-2">Dazzle Denver</span>
+                        
+                        <!-- Personnel List -->
+                        <div class="pt-8 border-t border-white/5 mt-8 space-y-2 max-w-sm mx-auto">
+                             <p class="text-[9px] text-zinc-500 uppercase tracking-[0.3em] font-bold mb-4">Personnel</p>
+                             <div class="flex justify-between items-baseline gap-4">
+                                <span class="text-[11px] text-zinc-300 tracking-wide uppercase font-bold">Aaron Summerfield</span>
+                                <span class="text-[10px] text-zinc-500 italic font-serif">Guitar / Composition</span>
+                             </div>
+                             <div class="flex justify-between items-baseline gap-4">
+                                <span class="text-[11px] text-zinc-300 tracking-wide uppercase font-bold">Tyler Farr</span>
+                                <span class="text-[10px] text-zinc-500 italic font-serif">Saxophones</span>
+                             </div>
+                             <div class="flex justify-between items-baseline gap-4">
+                                <span class="text-[11px] text-zinc-300 tracking-wide uppercase font-bold">Lannie Shelton</span>
+                                <span class="text-[10px] text-zinc-500 italic font-serif">Violin</span>
+                             </div>
+                             <div class="flex justify-between items-baseline gap-4">
+                                <span class="text-[11px] text-zinc-300 tracking-wide uppercase font-bold">Kevin Klemm</span>
+                                <span class="text-[10px] text-zinc-500 italic font-serif">Keys</span>
+                             </div>
+                             <div class="flex justify-between items-baseline gap-4">
+                                <span class="text-[11px] text-zinc-300 tracking-wide uppercase font-bold">Wilson Luallen</span>
+                                <span class="text-[10px] text-zinc-500 italic font-serif">Bass</span>
+                             </div>
+                             <div class="flex justify-between items-baseline gap-4">
+                                <span class="text-[11px] text-zinc-300 tracking-wide uppercase font-bold">Alex Tripp</span>
+                                <span class="text-[10px] text-zinc-500 italic font-serif">Drums</span>
+                             </div>
+                        </div>
+                    </div>
+                    <a href="https://www.dazzledenver.com/live-music/#/events/175419" target="_blank" class="glitch-btn inline-flex items-center gap-3 px-10 py-4 bg-white text-black font-bold uppercase tracking-widest text-[10px] rounded-sm transition-all">
+                        <i data-lucide="ticket" class="w-4 h-4"></i>
+                        Get Tickets
+                    </a>
+                </div>
+
                 <div class="relative">
                     <a id="contact-email" href="mailto:info@aaronsummerfield.com" class="block text-2xl md:text-4xl font-light hover:text-amber-500 transition-colors py-4 border-b border-white/10 max-w-2xl mx-auto relative z-20">
                         info@aaronsummerfield.com
                     </a>
-                    <p class="mt-4 text-xs text-zinc-500 uppercase tracking-widest bg-black/40 group-hover:bg-black/70 backdrop-blur-sm inline-block px-4 py-1 rounded-sm transition-all duration-700">Next Performance: Inquire for bookings</p>
-                </div>
-
-                <!-- Mailing List / Essentials -->
-                <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto pt-8 border-t border-white/10 relative z-20">
-                    <div class="text-left space-y-4">
-                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Newsletter</h4>
-                        <div class="flex flex-col gap-2">
-                            <form id="newsletter-form" class="flex gap-2">
-                                <input id="newsletter-email" type="email" placeholder="Email Address" class="bg-black/60 group-hover:bg-black/80 backdrop-blur-md border border-zinc-800 text-zinc-300 px-4 py-2 text-xs w-full focus:outline-none focus:border-amber-500 transition-all duration-500">
-                                <button id="newsletter-btn" type="submit" class="glitch-btn bg-zinc-800 text-white px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-sm transition-colors">Join</button>
-                            </form>
-                            <p id="newsletter-msg" class="text-[10px] h-4 text-amber-500 font-bold uppercase tracking-widest opacity-0 transition-opacity duration-500"></p>
-                        </div>
-                    </div>
-                    <div class="text-left space-y-4 md:text-right md:items-end flex flex-col">
-                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Press / Industry</h4>
-                        <a href="Aaron Summerfield EPK.pdf" download="Aaron Summerfield EPK.pdf" class="glitch-btn inline-block text-xs text-zinc-100 bg-black/40 group-hover:bg-black/70 backdrop-blur-sm hover:text-white border border-zinc-800 hover:border-zinc-500 px-6 py-2 transition-all uppercase tracking-widest rounded-sm">
-                            Download EPK (PDF)
-                        </a>
-                    </div>
                 </div>
 
                 <div class="flex flex-wrap justify-center gap-10 pt-12 relative z-20">
-                    <!-- All About Jazz (Saxophone Icon) -->
-                    <a href="https://www.allaboutjazz.com/musicians/aaron-summerfield" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full" title="All About Jazz">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12.915 2.115c-.208-.135-.466-.153-.69-.047l-1.033.483c-.22.103-.375.313-.414.554l-.466 2.872c-.052.321.121.64.417.77l1.042.454c.16.07.337.09.503.056l.873-.178c.322-.066.574-.326.634-.654l.418-2.28c.06-.328-.103-.66-.403-.815l-1.381-.715zM7.38 5.76c-.22.103-.375.313-.414.554L6.5 9.186c-.052.321.121.64.417.77l1.042.454c.16.07.337.09.503.056l.873-.178c.322-.066.574-.326.634-.654l.418-2.28c.06-.328-.103-.66-.403-.815l-1.381-.715c-.208-.135-.466-.153-.69-.047l-1.033.483zm9.24 3.7c-.22.103-.375.313-.414.554l-.466 2.872c-.052.321.121.64.417.77l1.042.454c.16.07.337.09.503.056l.873-.178c.322-.066.574-.326.634-.654l.418-2.28c.06-.328-.103-.66-.403-.815l-1.381-.715c-.208-.135-.466-.153-.69-.047l-1.033.483zm-4.6 2.2c-.347 0-.628.281-.628.628v2.41c0 .347.281.628.628.628h1.256c.347 0 .628-.281.628-.628v-2.41c0-.347-.281-.628-.628-.628h-1.256zm-4.4 1.8c-.347 0-.628.281-.628.628v2.41c0 .347.281.628.628.628h1.256c.347 0 .628-.281.628-.628v-2.41c0-.347-.281-.628-.628-.628h-1.256zm10.25 1.55c-1.24 0-2.25 1.01-2.25 2.25v2.53c0 .828.672 1.5 1.5 1.5h1.5c.828 0 1.5-.672 1.5-1.5v-2.53c0-1.24-1.01-2.25-2.25-2.25zm-6.25 4c-1.38 0-2.5 1.12-2.5 2.5v2.5c0 .828.672 1.5 1.5 1.5h2c.828 0 1.5-.672 1.5-1.5v-2.5c0-1.38-1.12-2.5-2.5-2.5zm-6 2.5c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2z"/>
-                        </svg>
-                    </a>
-                    <!-- Spotify -->
-                    <a href="https://open.spotify.com/artist/64tM7eKzGdIS5PkcNhvhrc?si=wSoaIuTpTFeKnAydswPUvQ" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full" title="Spotify">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.508 17.302c-.223.367-.704.484-1.062.261-2.874-1.755-6.491-2.152-10.748-1.178-.418.096-.837-.168-.933-.586-.096-.418.168-.837.586-.933 4.657-1.065 8.647-.618 11.896 1.365.358.223.475.704.261 1.071zm1.47-3.254c-.28.455-.875.597-1.33.317-3.29-2.022-8.31-2.61-12.196-1.43-.513.156-1.05-.145-1.206-.658-.156-.513.145-1.05.658-1.206 4.45-1.35 10-1.13 13.75 1.18.455.28.597.875.324 1.327zm.126-3.385c-3.95-2.346-10.462-2.564-14.25-1.41-.606.184-1.246-.17-1.43-.776-.184-.606.17-1.246.776-1.43 4.36-1.32 11.55-1.06 16.08 1.63.546.324.726 1.03.402 1.576-.324.546-1.03.726-1.576.402z"/></svg>
-                    </a>
-                    <!-- Apple Music -->
-                    <a href="https://music.apple.com/us/artist/aaron-summerfield/1470816887" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full" title="Apple Music">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4 11.144c-1.36 1.054-3.18 1.621-4.82 1.621-1.63 0-2.83-.54-2.83-1.61 0-.64.44-1.23 1.25-1.55 1.05-.42 2.76-.64 4.4-.64.12 0 .23 0 .34.01v-.15c0-.64-.47-1.04-1.37-1.04-.76 0-1.52.26-2.12.65-.13.08-.25.13-.34.13-.19 0-.34-.15-.34-.34 0-.12.06-.23.16-.31.81-.66 1.93-1.05 3-1.05 1.7 0 2.65.86 2.65 2.19v2.66c0 .54.19.86.49 1.15.12.11.18.23.18.35 0 .23-.19.42-.42.42-.1 0-.21-.04-.32-.12-.22-.16-.34-.41-.34-.69v-.01c-.56.59-1.37.95-2.28.95-1.33 0-2.4-.85-2.4-2.01 0-1.24 1.16-2.07 2.69-2.07.13 0 .27 0 .4.01v.01zm.34-.65v.01c-.11-.01-.22-.01-.34-.01-1.28 0-2.61.17-3.41.49-.6.23-.93.68-.93 1.14 0 .73.84 1.12 2.05 1.12 1.28 0 2.63-.44 2.63-1.66v-1.1z"/></svg>
-                    </a>
-                    <!-- Bandcamp -->
-                    <a href="https://aaronsummerfield.bandcamp.com/" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full" title="Bandcamp">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 18.75l7.437-13.5H24l-7.438 13.5H0z"/></svg>
-                    </a>
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/aaronsummerfield" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full" title="Instagram">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </a>
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/AaronSummerfieldMusic/" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full" title="Facebook">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
-                    </a>
-                    <!-- YouTube -->
-                    <a href="https://www.youtube.com/channel/UCTjdySQa56Ri16UY-7RZnZA" target="_blank" rel="noopener noreferrer" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 group-hover:bg-black/60 p-3 rounded-full" title="YouTube">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <a href="https://open.spotify.com/artist/64tM7eKzGdIS5PkcNhvhrc?si=wSoaIuTpTFeKnAydswPUvQ" target="_blank" class="social-glitch text-zinc-400 hover:text-white transition-all duration-500 bg-black/20 p-3 rounded-full">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.508 17.302c-.223.367-.704.484-1.062.261-2.874-1.755-6.491-2.152-10.748-1.178-.418.096-.837-.168-.933-.586-.096-.418.168-.837.586-.933 4.657-1.065 8.647-.618 11.896 1.365.358.223.475.704.261 1.071zm1.47-3.254c-.28.455-.875.597-1.33.317-3.29-2.022-8.31-2.61-12.196-1.43-.513.156-1.05-.145-1.206-.658-.156-.513.145-1.05.658-1.206 4.45-1.35 10-1.13 13.75 1.18.455.28.597.875.324 1.327zm.126-3.385c-3.95-2.346-10.462-2.564-14.25-1.41-.606.184-1.246-.17-1.43-.776-.184-.606.17-1.246.776-1.43 4.36-1.32 11.55-1.06 16.08 1.63.546.324.726 1.03.402 1.576-.324.546-1.03.726-1.576.402z"/></svg>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-20 px-6 text-center border-t border-white/5 opacity-30">
-        <p class="text-[9px] font-bold uppercase tracking-[0.5em]">
-            © 2025 Aaron Summerfield
-        </p>
-        <!-- Hidden Stats Counter -->
-        <div id="stats-counter" class="mt-4 text-[9px] font-mono select-all transition-all duration-500" style="display: none;">
-            <span class="shimmer-text">
-                Views: <span id="view-count">0</span> Total Listens: <span id="listen-count">0</span>
-            </span>
-        </div>
+        <p class="text-[9px] font-bold uppercase tracking-[0.5em]">© 2025 Aaron Summerfield</p>
     </footer>
-
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, onSnapshot, increment, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-
-        const viewEl = document.getElementById('view-count');
-        const listenEl = document.getElementById('listen-count');
-        const statsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'site_stats');
-
-        const initStats = async (user) => {
-            if (!user) return;
-            onSnapshot(statsDocRef, (docSnap) => {
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    viewEl.innerText = data.views || 0;
-                    listenEl.innerText = data.listens || 0;
-                } else {
-                    viewEl.innerText = 0;
-                    listenEl.innerText = 0;
-                }
-            });
-            try {
-                await setDoc(statsDocRef, { views: increment(1) }, { merge: true });
-            } catch (e) {}
-        };
-
-        const initAuth = async () => {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                await signInWithCustomToken(auth, __initial_auth_token);
-            } else {
-                await signInAnonymously(auth);
-            }
-        };
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                initStats(user);
-            }
-        });
-
-        initAuth();
-
-        window.incrementListens = async () => {
-            if (!auth.currentUser) return;
-            try {
-                await setDoc(statsDocRef, { listens: increment(1) }, { merge: true });
-            } catch (e) {}
-        };
-    </script>
-
-    <!-- Interactive Header Audio -->
-    <audio id="header-preview-audio" src="Branch remaster 10-12-25.mp3" preload="auto"></audio>
 
     <script>
         lucide.createIcons();
@@ -795,16 +442,7 @@
         const trackArtwork = document.getElementById('track-artwork');
         
         const tracks = [
-            { 
-                src: 'IntegratedCounterpoint1master.m4a', 
-                title: 'Integrated Counterpoint One',
-                img: 'Integrated Counterpoint alt 3.jpg'
-            },
-            { 
-                src: 'General Interest Meeting cd baby.mp3', 
-                title: 'General Interest Meeting',
-                img: 'Baby Blues blue.jpg'
-            }
+            { src: 'IntegratedCounterpoint1master.m4a', title: 'Integrated Counterpoint One', img: 'Integrated Counterpoint alt 3.jpg' }
         ];
         
         let currentTrackIndex = 0;
@@ -812,309 +450,21 @@
         function updatePlayerUI() {
             const track = tracks[currentTrackIndex];
             trackTitleDisplay.innerText = track.title;
-            
-            trackArtwork.style.opacity = '0';
-            setTimeout(() => {
-                trackArtwork.src = track.img;
-                trackArtwork.style.opacity = '1';
-            }, 300);
-            
-            document.querySelectorAll('.playlist-item').forEach((item, idx) => {
-                if (idx === currentTrackIndex) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-        }
-
-        let listenCountedForThisTrack = false;
-
-        function playTrack(index) {
-            currentTrackIndex = index;
-            const track = tracks[currentTrackIndex];
-            
-            audioPlayer.pause();
-            audioPlayer.src = track.src;
-            audioPlayer.load();
-            updatePlayerUI();
-            audioPlayer.play();
-            
-            if (window.incrementListens) window.incrementListens();
-        }
-
-        function selectTrack(index, element) {
-            playTrack(index);
-        }
-
-        function nextTrack() {
-            let nextIndex = currentTrackIndex + 1;
-            if (nextIndex >= tracks.length) nextIndex = 0;
-            playTrack(nextIndex);
-        }
-
-        function prevTrack() {
-            let prevIndex = currentTrackIndex - 1;
-            if (prevIndex < 0) prevIndex = tracks.length - 1;
-            playTrack(prevIndex);
-        }
-
-        audioPlayer.onended = () => nextTrack();
-
-        audioPlayer.onplay = () => {
-            if (!listenCountedForThisTrack && window.incrementListens) {
-                window.incrementListens();
-                listenCountedForThisTrack = true;
-            }
-        };
-        audioPlayer.onloadstart = () => {
-            listenCountedForThisTrack = false;
-        };
-
-        function toggleTracklist() {
-            const container = document.getElementById('tracklist-container');
-            const chevron = document.getElementById('tracklist-chevron');
-            
-            if (container.classList.contains('max-h-0')) {
-                container.classList.remove('max-h-0', 'opacity-0', 'pointer-events-none');
-                container.classList.add('max-h-96', 'opacity-100', 'mt-4');
-                chevron.classList.add('rotate-180');
-            } else {
-                container.classList.add('max-h-0', 'opacity-0', 'pointer-events-none');
-                container.classList.remove('max-h-96', 'opacity-100', 'mt-4');
-                chevron.classList.remove('rotate-180');
-            }
+            trackArtwork.src = track.img;
         }
 
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 nav.classList.add('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
-                nav.classList.remove('py-8');
             } else {
                 nav.classList.remove('bg-black/90', 'backdrop-blur-xl', 'py-4', 'border-b', 'border-white/5');
-                nav.classList.add('py-8');
             }
         });
 
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-        });
-
-        // Scramble animation helper
-        class TextScramble {
-            constructor(el) {
-                this.el = el;
-                this.chars = '!<>-_\\/[]{}—=+*^?#________';
-                this.continuous = false; // Flag for infinite scrambling
-                this.update = this.update.bind(this);
-            }
-            setText(newText) {
-                const oldText = this.el.innerText;
-                const length = Math.max(oldText.length, newText.length);
-                const promise = new Promise((resolve) => this.resolve = resolve);
-                this.queue = [];
-                for (let i = 0; i < length; i++) {
-                    const from = oldText[i] || '';
-                    const to = newText[i] || '';
-                    const start = Math.floor(Math.random() * 40);
-                    const end = start + Math.floor(Math.random() * 40);
-                    this.queue.push({ from, to, start, end });
-                }
-                cancelAnimationFrame(this.frameRequest);
-                this.frame = 0;
-                this.update();
-                return promise;
-            }
-            update() {
-                let output = '';
-                let complete = 0;
-                for (let i = 0, n = this.queue.length; i < n; i++) {
-                    let { from, to, start, end, char } = this.queue[i];
-
-                    // Continuous mode prevents resolving to final letters
-                    if (this.continuous) {
-                        char = this.randomChar();
-                        output += `<span class="opacity-50 text-white">${char}</span>`;
-                        continue;
-                    }
-
-                    if (this.frame >= end) {
-                        complete++;
-                        output += to;
-                    } else if (this.frame >= start) {
-                        if (!char || Math.random() < 0.28) {
-                            char = this.randomChar();
-                            this.queue[i].char = char;
-                        }
-                        output += `<span class="opacity-50 text-white">${char}</span>`;
-                    } else {
-                        output += from;
-                    }
-                }
-                this.el.innerHTML = output;
-
-                if (!this.continuous && complete === this.queue.length) {
-                    this.resolve();
-                } else {
-                    this.frameRequest = requestAnimationFrame(this.update);
-                    this.frame++;
-                }
-            }
-            randomChar() {
-                return this.chars[Math.floor(Math.random() * this.chars.length)];
-            }
-        }
-
-        // Hero Header Interactive Logic
-        const heroTitle = document.getElementById('hero-title');
-        const scrambleQuote = document.getElementById('scramble-quote');
-        const previewAudio = document.getElementById('header-preview-audio');
-        
-        const presets = [
-            "Capturing the feeling of a season returning, yet always appearing new.",
-            "Returning season, always appearing new; yet capturing the feeling.",
-            "New season returning, yet always appearing: capturing the feeling.",
-            "The feeling of a season capturing, yet always returning new appearing.",
-            "Always appearing new, yet returning a season, capturing the feeling.",
-            "Appearing new, yet capturing the season, returning always the feeling.",
-            "Yet always returning new, capturing a feeling, appearing season.",
-            "Season appearing new, yet capturing the returning always feeling."
-        ];
-        
-        let audioTimeout;
-        let fadeInterval;
-        let scrambleInterval;
-        let presetIndex = 0;
-
-        const fx = new TextScramble(scrambleQuote);
-
-        heroTitle.addEventListener('mouseenter', () => {
-            // Audio Logic
-            clearInterval(fadeInterval);
-            previewAudio.volume = 0.2;
-            previewAudio.currentTime = 0;
-            previewAudio.play().catch(() => {});
-            clearTimeout(audioTimeout);
-            audioTimeout = setTimeout(() => fadeOutAudio(), 10000);
-
-            // Visual Logic
-            scrambleQuote.classList.add('shimmer-reveal');
-            fx.continuous = true; // Start perpetual scramble
-            
-            // Cycle presets while moused over
-            scrambleInterval = setInterval(() => {
-                presetIndex = (presetIndex + 1) % presets.length;
-                fx.setText(presets[presetIndex]);
-            }, 3000);
-            
-            presetIndex = Math.floor(Math.random() * (presets.length - 1)) + 1;
-            fx.setText(presets[presetIndex]);
-        });
-
-        heroTitle.addEventListener('mouseleave', () => {
-            fadeOutAudio();
-            clearInterval(scrambleInterval);
-            scrambleQuote.classList.remove('shimmer-reveal');
-            fx.continuous = false; // Allow resolution back to original
-            fx.setText(presets[0]);
-        });
-
-        // Contact Email Scramble Logic
-        const contactEmail = document.getElementById('contact-email');
-        const emailFx = new TextScramble(contactEmail);
-        const originalEmail = "info@aaronsummerfield.com";
-
-        if (contactEmail) {
-            contactEmail.addEventListener('mouseenter', () => {
-                contactEmail.classList.add('email-glitch-active');
-                emailFx.continuous = true;
-                emailFx.setText(originalEmail);
-            });
-
-            contactEmail.addEventListener('mouseleave', () => {
-                contactEmail.classList.remove('email-glitch-active');
-                emailFx.continuous = false;
-                emailFx.setText(originalEmail);
-            });
-        }
-
-        // Newsletter Logic
-        const newsletterBtn = document.getElementById('newsletter-btn');
-        const newsletterEmailInput = document.getElementById('newsletter-email');
-        const newsletterMsg = document.getElementById('newsletter-msg');
-        const newsletterForm = document.getElementById('newsletter-form');
-
-        if (newsletterBtn && newsletterForm) {
-            newsletterForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const email = newsletterEmailInput.value.trim();
-                
-                if (!email || !email.includes('@')) {
-                    newsletterMsg.textContent = "Please enter a valid email";
-                    newsletterMsg.classList.remove('opacity-0');
-                    return;
-                }
-
-                // POST to formResponse for auto-submission
-                const formId = "1FAIpQLSepBJfN3LbxFrga4z04Jvkj70g4lqnWXZvgxW2Pczs9LG_BkA";
-                const submitUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
-                
-                const hiddenForm = document.createElement('form');
-                hiddenForm.action = submitUrl;
-                hiddenForm.method = 'POST';
-                hiddenForm.target = '_blank';
-
-                const hiddenInput = document.createElement('input');
-                hiddenInput.name = 'entry.424566785'; // Verified Entry ID
-                hiddenInput.value = email;
-                hiddenForm.appendChild(hiddenInput);
-
-                document.body.appendChild(hiddenForm);
-                hiddenForm.submit();
-                document.body.removeChild(hiddenForm);
-                
-                newsletterMsg.textContent = "Joining Mailing List...";
-                newsletterMsg.classList.remove('opacity-0');
-                
-                setTimeout(() => {
-                    newsletterEmailInput.value = "";
-                    newsletterMsg.classList.add('opacity-0');
-                }, 3000);
-            });
-        }
-
-        function fadeOutAudio() {
-            clearTimeout(audioTimeout);
-            clearInterval(fadeInterval);
-            fadeInterval = setInterval(() => {
-                if (previewAudio.volume > 0.02) {
-                    previewAudio.volume -= 0.02;
-                } else {
-                    previewAudio.pause();
-                    previewAudio.volume = 0;
-                    clearInterval(fadeInterval);
-                }
-            }, 50);
-        }
-
-        // Auto-play video on CTA click
-        function playPerformance() {
-            const video = document.getElementById('performance-video');
-            const src = video.getAttribute('src');
-            // Append autoplay if not already present
-            if (!src.includes('autoplay=1')) {
-                video.setAttribute('src', src + '&autoplay=1');
-            }
-        }
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     </script>
 </body>
 </html>
-
-
